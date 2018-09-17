@@ -1,26 +1,26 @@
 package com.minras.lovesyou;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageButton btnRequest;
-    private ImageButton btnAsk;
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnRequest = (ImageButton) findViewById(R.id.requestLoveButton);
+        ImageButton btnRequest = (ImageButton) findViewById(R.id.requestLoveButton);
         btnRequest.setOnClickListener(this);
 
-        btnAsk = (ImageButton) findViewById(R.id.askAboutLoveButton);
+        ImageButton btnAsk = (ImageButton) findViewById(R.id.askAboutLoveButton);
         btnAsk.setOnClickListener(this);
 
     }
@@ -29,16 +29,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.askAboutLoveButton:
-                showMessage();
+                showMessage(R.array.ask_array);
                 break;
             case R.id.requestLoveButton:
-                showMessage();
+                showMessage(R.array.request_array);
                 break;
         }
     }
 
-    private void showMessage() {
-        Toast toast = Toast.makeText(getApplicationContext(), "sample message", Toast.LENGTH_LONG);
+    private void showMessage(int dataId) {
+        String[] array = getResources().getStringArray(dataId);
+        String text = array[new Random().nextInt(array.length)];
+        if(null != toast) {
+            toast.cancel();
+        }
+        toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
         toast.show();
     }
 }

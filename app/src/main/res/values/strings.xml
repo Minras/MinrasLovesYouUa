@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Minras Loves You!</string>
+    <string-array name="ask_array">
+        <item>Of course I do love you.</item>
+        <item>Yes. I do love you.</item>
+        <item>Love me tender, love me sweet, tra-la-lo-lo-lo!11</item>
+    </string-array>
+    <string-array name="request_array">
+        <item>Oh, my unicornness! Love ya such much!</item>
+        <item>Yes-yes-yeeess! Love you, honey!</item>
+        <item>My dear bunny, I love you!</item>
+    </string-array>
 </resources>
