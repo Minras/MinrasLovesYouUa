@@ -4,22 +4,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btnRequest;
-    private Button btnAsk;
+    private ImageButton btnRequest;
+    private ImageButton btnAsk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnRequest = (Button) findViewById(R.id.requestLoveButton);
+        btnRequest = (ImageButton) findViewById(R.id.requestLoveButton);
         btnRequest.setOnClickListener(this);
 
-        btnAsk = (Button) findViewById(R.id.askAboutLoveButton);
+        btnAsk = (ImageButton) findViewById(R.id.askAboutLoveButton);
         btnAsk.setOnClickListener(this);
 
     }
