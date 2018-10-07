@@ -3,6 +3,7 @@ package com.minras.lovesyou;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -37,6 +38,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.requestLoveButton:
                 showMessage(R.array.request_array);
                 break;
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_copyright:
+                showMessage(R.array.test_array);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

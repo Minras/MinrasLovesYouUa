@@ -16,6 +16,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".CopyrightActivity"
+            android:label="@string/title_activity_copyright"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <!-- Parent activity meta-data to support 4.0 and lower -->
+                <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.minras.lovesyou.MainActivity" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

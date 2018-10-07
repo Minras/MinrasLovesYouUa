@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Minras Loves You!</string>
+
+    <string name="action_copyright">Copyright</string>
+    <string name="title_activity_copyright">Copyright</string>
+
     <string-array name="ask_array">
         <item>Of course I do love you.</item>
         <item>Yes. I do love you.</item>
@@ -22,5 +26,8 @@
         <item>Loving you never was an option. It was a necessity.</item>
         <item>Just when I think that it is impossible to love you any more, you prove me wrong.</item>
         <item>Come live in my heart!</item>
+    </string-array>
+    <string-array name="test_array">
+        <item>Test</item>
     </string-array>
 </resources>
