@@ -7,7 +7,7 @@
 
     <item
         android:id="@+id/action_copyright"
-        android:icon="@mipmap/ic_copyright_black_24dp"
+        android:icon="@drawable/ic_copyright_white_24dp"
         android:title="@string/action_copyright"
         app:showAsAction="ifRoom"/>
 </menu>

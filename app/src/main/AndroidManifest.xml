@@ -21,16 +21,15 @@
             </intent-filter>
         </activity>
 
-        <!--<activity android:name=".CopyrightActivity"-->
-            <!--android:label="@string/title_activity_copyright"-->
-            <!--android:parentActivityName=".MainActivity">-->
-            <!--<intent-filter>-->
-                <!--&lt;!&ndash; Parent activity meta-data to support 4.0 and lower &ndash;&gt;-->
-                <!--<meta-data-->
-                    <!--android:name="android.support.PARENT_ACTIVITY"-->
-                    <!--android:value="com.minras.lovesyou.MainActivity" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
+        <activity
+            android:name=".CopyrightActivity"
+            android:label="@string/title_activity_copyright"
+            android:parentActivityName="com.minras.lovesyou.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.minras.lovesyou.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
