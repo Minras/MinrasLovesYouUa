@@ -23,8 +23,9 @@
     </android.support.design.widget.AppBarLayout>
 
     <TextView
+        android:id="@+id/text_copyright"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="copyright info goes here"
-        android:padding="?attr/actionBarSize"/>
+        android:text=""
+        android:paddingTop="?attr/actionBarSize"/>
 </android.support.design.widget.CoordinatorLayout>
