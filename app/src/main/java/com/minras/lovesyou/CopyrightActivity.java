@@ -5,12 +5,18 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.text.util.Linkify;
 import android.widget.TextView;
 
 /**
  * Created by Andrii Shchurkov on 10/7/2018.
  */
 public class CopyrightActivity extends AppCompatActivity {
+
+    final private static String ICON_COPYRIGHT = "The unicorn icons were made by " +
+            "Freepik (www.flaticon.com/authors/freepik) " +
+            "from www.flaticon.com. Thank you, guys!";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +29,7 @@ public class CopyrightActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         TextView txt = (TextView) findViewById(R.id.text_copyright);
-        txt.setText(Html.fromHtml("The unicorn icons made by <a href='https://www.flaticon.com/authors/freepik'>Freepik</a> from <a href='https://www.flaticon.com'>www.flaticon.com</a>. Thank you, guys!"));
+        txt.setText(ICON_COPYRIGHT);
+        Linkify.addLinks(txt, Linkify.WEB_URLS);
     }
 }
