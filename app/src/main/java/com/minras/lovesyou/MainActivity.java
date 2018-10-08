@@ -23,10 +23,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ImageButton btnRequest = (ImageButton) findViewById(R.id.requestLoveButton);
-        btnRequest.setOnClickListener(this);
+        ImageButton btnTell = (ImageButton) findViewById(R.id.tellButton);
+        btnTell.setOnClickListener(this);
 
-        ImageButton btnAsk = (ImageButton) findViewById(R.id.askAboutLoveButton);
+        ImageButton btnAsk = (ImageButton) findViewById(R.id.askButton);
         btnAsk.setOnClickListener(this);
 
     }
@@ -34,11 +34,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.askAboutLoveButton:
+            case R.id.askButton:
                 showMessage(R.array.ask_array);
                 break;
-            case R.id.requestLoveButton:
-                showMessage(R.array.request_array);
+            case R.id.tellButton:
+                showMessage(R.array.tell_array);
                 break;
         }
     }

@@ -8,7 +8,7 @@
     tools:showIn="@layout/activity_main">
 
     <LinearLayout
-        style="@style/requestButtonLayout"
+        style="@style/tellButtonLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -17,7 +17,7 @@
         android:paddingTop="?attr/actionBarSize">
 
         <ImageButton
-            android:id="@+id/requestLoveButton"
+            android:id="@+id/tellButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Request Love" />
+            android:text="@string/tell_btn_title" />
     </LinearLayout>
 
     <LinearLayout
@@ -38,7 +38,7 @@
         android:orientation="vertical">
 
         <ImageButton
-            android:id="@+id/askAboutLoveButton"
+            android:id="@+id/askButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -47,7 +47,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Do you love me?" />
+            android:text="@string/ask_btn_title" />
     </LinearLayout>
 
 </RelativeLayout>
