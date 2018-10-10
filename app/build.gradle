@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion project.minrasCompileSdkVersion.toInteger()
     defaultConfig {
         applicationId "com.minras.lovesyou"
-        minSdkVersion 17
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion project.minrasMinSdkVersion.toInteger()
+        targetSdkVersion project.minrasTargetSdkVersion.toInteger()
+        versionCode project.appVersionCode.toInteger()
+        versionName project.appVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
