@@ -14,16 +14,16 @@
     </style>
 
     <style name="tellButtonLayout">
-        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginTop">35dp</item>
         <item name="android:layout_marginRight">0dp</item>
         <item name="android:layout_marginBottom">0dp</item>
-        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginLeft">35dp</item>
     </style>
 
     <style name="askButtonLayout">
         <item name="android:layout_marginTop">0dp</item>
-        <item name="android:layout_marginRight">20dp</item>
-        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_marginRight">35dp</item>
+        <item name="android:layout_marginBottom">35dp</item>
         <item name="android:layout_marginLeft">0dp</item>
     </style>
 
