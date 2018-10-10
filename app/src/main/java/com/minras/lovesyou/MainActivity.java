@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private int largeIconsTreshold = 2000;
     private Toast toast;
 
     @Override
@@ -29,6 +31,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ImageButton btnAsk = (ImageButton) findViewById(R.id.askButton);
         btnAsk.setOnClickListener(this);
 
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        if (displayMetrics.widthPixels > largeIconsTreshold || displayMetrics.heightPixels > largeIconsTreshold) {
+            btnTell.setImageResource(R.drawable.unicorn_256_1049961);
+            btnAsk.setImageResource(R.drawable.unicorn_256_1049947);
+        }
     }
 
     @Override
