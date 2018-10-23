@@ -15,13 +15,13 @@
         <item>It is true that my heart always skips a beat when you take my name.</item>
         <item>Loving you never was an option. It was a necessity.</item>
         <item>Just when I think that it is impossible to love you any more, you prove me wrong.</item>
-        <item>I'm yours!</item>
-        <item>I'm totally into you!</item>
-        <item>I'm infatuated with you!</item>
-        <item>I'm hooked on you.</item>
-        <item>I'm all about you!</item>
+        <item>I\'m yours!</item>
+        <item>I\'m totally into you!</item>
+        <item>I\'m infatuated with you!</item>
+        <item>I\'m hooked on you.</item>
+        <item>I\'m all about you!</item>
         <item>I kinda like you.</item>
-        <item>I'm mad about you!</item>
+        <item>I\'m mad about you!</item>
     </string-array>
     <string-array name="tell_array">
         <item>Oh, my unicornness! Love ya such much!</item>
@@ -36,9 +36,9 @@
         <item>I will love you until the stars go out, and the tides no longer turn.</item>
         <item>If I know what love is, it is because of you.</item>
         <item>Love ya!</item>
-        <item>You're amazing!</item>
+        <item>You\'re amazing!</item>
         <item>I adore you!</item>
-        <item>You're my girl!</item>
+        <item>You\'re my girl!</item>
         <item>Roses are red; violets are blue; sugar is sweet, and so are you!</item>
         <item>I hereby declare my love and affection toward you.</item>
     </string-array>
