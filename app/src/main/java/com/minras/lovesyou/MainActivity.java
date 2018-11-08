@@ -10,14 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private int largeIconsTreshold = 2000;
-    private Toast toast;
     TextView loveTextView;
 
     @Override
@@ -77,12 +75,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void showMessage(int dataId) {
         String[] array = getResources().getStringArray(dataId);
         String text = array[new Random().nextInt(array.length)];
-        if(null != toast) {
-            toast.cancel();
-        }
-        toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
-        toast.show();
-
         loveTextView.setText(text);
     }
 }
