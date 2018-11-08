@@ -1,6 +1,7 @@
 package com.minras.lovesyou;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,14 +10,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private int largeIconsTreshold = 2000;
-    private Toast toast;
+    private String loveText = "";
+    private TextView loveTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ImageButton btnAsk = (ImageButton) findViewById(R.id.askButton);
         btnAsk.setOnClickListener(this);
+
+        loveTextView = (TextView) findViewById(R.id.love_text_view);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -70,13 +74,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        loveTextView.setText(loveText);
+    }
+
     private void showMessage(int dataId) {
         String[] array = getResources().getStringArray(dataId);
-        String text = array[new Random().nextInt(array.length)];
-        if(null != toast) {
-            toast.cancel();
-        }
-        toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
-        toast.show();
+        loveText = array[new Random().nextInt(array.length)];
+        loveTextView.setText(loveText);
     }
 }
