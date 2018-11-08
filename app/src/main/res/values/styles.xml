@@ -14,16 +14,16 @@
     </style>
 
     <style name="tellButtonLayout">
-        <item name="android:layout_marginTop">45dp</item>
+        <item name="android:layout_marginTop">30dp</item>
         <item name="android:layout_marginEnd">10dp</item>
         <item name="android:layout_marginBottom">10dp</item>
-        <item name="android:layout_marginStart">45dp</item>
+        <item name="android:layout_marginStart">30dp</item>
     </style>
 
     <style name="askButtonLayout">
         <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginEnd">45dp</item>
-        <item name="android:layout_marginBottom">45dp</item>
+        <item name="android:layout_marginEnd">35dp</item>
+        <item name="android:layout_marginBottom">35dp</item>
         <item name="android:layout_marginStart">10dp</item>
     </style>
 
@@ -32,6 +32,10 @@
         <item name="android:layout_marginRight">20dp</item>
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:layout_marginLeft">10dp</item>
+    </style>
+
+    <style name="loveTextView">
+        <item name="android:color">@color/white</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

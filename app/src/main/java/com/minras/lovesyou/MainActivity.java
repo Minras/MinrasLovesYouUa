@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private int largeIconsTreshold = 2000;
     private Toast toast;
+    TextView loveTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ImageButton btnAsk = (ImageButton) findViewById(R.id.askButton);
         btnAsk.setOnClickListener(this);
+
+        loveTextView = (TextView) findViewById(R.id.love_text_view);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -78,5 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
         toast.show();
+
+        loveTextView.setText(text);
     }
 }
