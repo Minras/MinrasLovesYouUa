@@ -99,7 +99,14 @@
             app:layout_constraintRight_toRightOf="@+id/right_guideline"
             app:layout_constraintTop_toTopOf="@+id/top_guideline"
             app:layout_constraintBottom_toBottomOf="@+id/bottom_guideline"
-            android:text="fff" />
+
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="casual"
+            />
 
     </android.support.constraint.ConstraintLayout>
 

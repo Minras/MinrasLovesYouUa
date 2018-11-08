@@ -16,7 +16,8 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private int largeIconsTreshold = 2000;
-    TextView loveTextView;
+    private String loveText = "";
+    private TextView loveTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void showMessage(int dataId) {
         String[] array = getResources().getStringArray(dataId);
-        String text = array[new Random().nextInt(array.length)];
-        loveTextView.setText(text);
+        loveText = array[new Random().nextInt(array.length)];
+        loveTextView.setText(loveText);
     }
 }
