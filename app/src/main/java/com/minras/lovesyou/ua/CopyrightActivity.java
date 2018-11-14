@@ -1,10 +1,9 @@
-package com.minras.lovesyou;
+package com.minras.lovesyou.ua;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.text.util.Linkify;
 import android.widget.TextView;
 
@@ -13,9 +12,8 @@ import android.widget.TextView;
  */
 public class CopyrightActivity extends AppCompatActivity {
 
-    final private static String ICON_COPYRIGHT = "The unicorn icons were made by " +
-            "Freepik (www.flaticon.com/authors/freepik) " +
-            "from www.flaticon.com. Thank you, guys!";
+    final private static String ICON_COPYRIGHT = "За іконки з єдинорогами та хмаринку подяка " +
+            "Freepik та Vecteezy з www.freepik.com. Щиро вдячний, хлопці!";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

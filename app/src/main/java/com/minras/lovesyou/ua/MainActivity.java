@@ -1,4 +1,4 @@
-package com.minras.lovesyou;
+package com.minras.lovesyou.ua;
 
 import android.content.Intent;
 import android.content.res.Configuration;

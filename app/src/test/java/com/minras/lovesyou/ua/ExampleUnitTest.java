@@ -1,4 +1,4 @@
-package com.minras.lovesyou;
+package com.minras.lovesyou.ua;
 
 import org.junit.Test;
 

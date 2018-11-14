@@ -1,46 +1,41 @@
 <resources>
-    <string name="app_name">Minras Loves You!</string>
+    <string name="app_name">Поговоримо про кохання</string>
 
     <string name="action_copyright">Copyright</string>
     <string name="title_activity_copyright">Copyright</string>
-    <string name="tell_btn_title">Tell me!</string>
-    <string name="ask_btn_title">Do you love me?</string>
+    <string name="tell_btn_title">Скажи мені!</string>
+    <string name="ask_btn_title">Ти мене кохаєшь?</string>
     <string name="love_text_frame_descr">Cloud wrapper</string>
 
     <string-array name="ask_array">
-        <item>Of course I do love you.</item>
-        <item>Yes-yes-yeeess! Love you, honey!</item>
-        <item>Yes. I do love you.</item>
-        <item>Every time I see you, I fall in love all over again.</item>
-        <item>Let us Flip the coin and see. Head, I am yours. Tail, you are mine.</item>
-        <item>It is true that my heart always skips a beat when you take my name.</item>
-        <item>Loving you never was an option. It was a necessity.</item>
-        <item>Just when I think that it is impossible to love you any more, you prove me wrong.</item>
-        <item>I\'m yours!</item>
-        <item>I\'m totally into you!</item>
-        <item>I\'m infatuated with you!</item>
-        <item>I\'m hooked on you.</item>
-        <item>I\'m all about you!</item>
-        <item>I kinda like you.</item>
-        <item>I\'m mad about you!</item>
+        <item>Звичайно ж, я тебе кохаю. </item>
+        <item>Так-так-тааааак! Люблю тебе, мила!</item>
+        <item>Так. Я тебе кохаю.</item>
+        <item>Кожного разу, коли тебе бачу, знову закохуюсь як уперше!</item>
+        <item>Я твій!</item>
+        <item>Я тобою захоплююсь до нестями!</item>
+        <item>Кохаю аж не можу.</item>
+        <item>Я просто до нестями закоханий.</item>
+        <item>Авжеж!</item>
+        <item>А хіба в мене є вибір?!!</item>
+        <item>Звичайно, мала, люблю тебе.</item>
     </string-array>
     <string-array name="tell_array">
-        <item>Oh, my unicornness! Love ya such much!</item>
-        <item>My dear bunny, I love you!</item>
-        <item>Medved! We need a medved!</item>
-        <item>Your love is all I need to feel complete.</item>
-        <item>Come live in my heart!</item>
-        <item>Love me tender, love me sweet, tra-la-lo-lo-lo!11</item>
-        <!--<item>Soft Olya, Warm Minras, Poeskin bal of furrr…</item>-->
-        <item>Purr-purr-purr-purr-purr…</item>
-        <item>I am happiest when I’m right next to you.</item>
-        <item>I will love you until the stars go out, and the tides no longer turn.</item>
-        <item>If I know what love is, it is because of you.</item>
-        <item>Love ya!</item>
-        <item>You\'re amazing!</item>
-        <item>I adore you!</item>
-        <item>You\'re my girl!</item>
-        <item>Roses are red; violets are blue; sugar is sweet, and so are you!</item>
-        <item>I hereby declare my love and affection toward you.</item>
+        <item>О, моя єдиноріжка! Так тебе кохаю!</item>
+        <item>Зайченя, люблю тебе!</item>
+        <item>Ведмідь! Нам потрібен ведмідь!</item>
+        <item>Твоє кохання - це все, що мені потрібно для щастя.</item>
+        <item>Приходь жити до мого серця!</item>
+        <item>Люби мене ніжно, люби мене солодко, ніколи мене не відпускай…</item>
+        <item>М\'яка Оля, Теплий Мінрас, Пускін - руда тварюка…</item>
+        <item>Я щасливий лише коли я поруч із тобою.</item>
+        <item>Я буду любити тебе, поки зірки не згаснуть, а приливи не припинять рух.</item>
+        <item>Якщо я знаю, що таке любов, то це лише завдяки тобі.</item>
+        <item>Кохаю!</item>
+        <item>Ти диво!</item>
+        <item>Я тебе обожнюю!</item>
+        <item>Ти - моя дівчина!</item>
+        <item>Троянди червоні; фіалки сині; цукор солодкий, отака вона - англійська лірика!</item>
+        <item>Я заявляю про свою любов і прихильність до вас.</item>
     </string-array>
 </resources>

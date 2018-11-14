@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.minras.lovesyou.MainActivity"
+    tools:context="com.minras.lovesyou.ua.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <ImageView
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/love_text_frame_descr"
-        android:src="@drawable/ic_bubble01" />
+        app:srcCompat="@drawable/ic_bubble01" />
 
     <LinearLayout
         style="@style/tellButtonLayout"
@@ -30,8 +31,9 @@
             android:src="@drawable/unicorn_128_1049961" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:text="@string/tell_btn_title" />
     </LinearLayout>
 
@@ -51,8 +53,9 @@
             android:src="@drawable/unicorn_128_1049947" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:text="@string/ask_btn_title" />
     </LinearLayout>
 

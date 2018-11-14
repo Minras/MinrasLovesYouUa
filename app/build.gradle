@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion project.minrasCompileSdkVersion.toInteger()
     defaultConfig {
-        applicationId "com.minras.lovesyou"
+        applicationId "com.minras.lovesyou.ua"
         minSdkVersion project.minrasMinSdkVersion.toInteger()
         targetSdkVersion project.minrasTargetSdkVersion.toInteger()
         versionCode project.appVersionCode.toInteger()

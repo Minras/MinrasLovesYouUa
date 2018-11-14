@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.minras.lovesyou">
+    package="com.minras.lovesyou.ua">
 
     <application
         android:allowBackup="true"
@@ -25,11 +25,11 @@
         <activity
             android:name=".CopyrightActivity"
             android:label="@string/title_activity_copyright"
-            android:parentActivityName="com.minras.lovesyou.MainActivity"
+            android:parentActivityName="com.minras.lovesyou.ua.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.minras.lovesyou.MainActivity" />
+                android:value="com.minras.lovesyou.ua.MainActivity" />
         </activity>
     </application>
 
