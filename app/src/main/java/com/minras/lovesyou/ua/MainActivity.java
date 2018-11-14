@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             btnTell.setImageResource(R.drawable.unicorn_256_1049961);
             btnAsk.setImageResource(R.drawable.unicorn_256_1049947);
         }
+
+        showMessage(R.array.tell_array);
     }
 
     @Override
