@@ -1,8 +1,10 @@
 package com.minras.lovesyou.ua;
 
+import android.accounts.AccountManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
@@ -12,18 +14,32 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.GoogleAuthUtil;
+import com.google.android.gms.common.AccountPicker;
+
+import org.apache.commons.lang3.ArrayUtils;
+
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    final private int REQUEST_CODE_ASK_PERMISSIONS = 56171;
+
     private int largeIconsTreshold = 2000;
     private String loveText = "";
+    private String accountEmail = null;
     private TextView loveTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // log in with google account to get a registered email
+        Intent googlePicker = AccountPicker.newChooseAccountIntent(null, null, new String[]{GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE},
+                true, null, null, null, null);
+        startActivityForResult(googlePicker, REQUEST_CODE_ASK_PERMISSIONS);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -42,17 +58,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             btnAsk.setImageResource(R.drawable.unicorn_256_1049947);
         }
 
-        showMessage(R.array.tell_array);
+        showMessage(R.array.tell_array, R.array.tell_array_personal);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.askButton:
-                showMessage(R.array.ask_array);
+                showMessage(R.array.ask_array, R.array.ask_array_personal);
                 break;
             case R.id.tellButton:
-                showMessage(R.array.tell_array);
+                showMessage(R.array.tell_array, R.array.tell_array_personal);
                 break;
         }
     }
@@ -82,8 +98,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         loveTextView.setText(loveText);
     }
 
-    private void showMessage(int dataId) {
-        String[] array = getResources().getStringArray(dataId);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_ASK_PERMISSIONS && resultCode == RESULT_OK) {
+            accountEmail = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+        }
+    }
+
+    private void showMessage(int dataId, int personalDataId) {
+        String[] array;
+        if ("ol.zvereva@gmail.com".equals(accountEmail) || "andrey.shchurkov@gmail.com".equals(accountEmail)) {
+            array = ArrayUtils.addAll(getResources().getStringArray(dataId), getResources().getStringArray(personalDataId));
+        } else {
+            array = getResources().getStringArray(dataId);
+        }
         loveText = array[new Random().nextInt(array.length)];
         loveTextView.setText(loveText);
     }
