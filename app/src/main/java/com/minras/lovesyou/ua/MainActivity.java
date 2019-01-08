@@ -1,13 +1,16 @@
 package com.minras.lovesyou.ua;
 
 import android.accounts.AccountManager;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,8 +24,12 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Random;
 
+import static com.minras.lovesyou.ua.Config.SHARED_PREFERENCES_NAME;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    final private String ACCOUNT_EMAIL_KEY = "accountEmail";
+    final private String LOG_TAG = "DEBUG_TAG";
     final private int REQUEST_CODE_ASK_PERMISSIONS = 56171;
 
     private int largeIconsTreshold = 2000;
@@ -36,9 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         // log in with google account to get a registered email
-        Intent googlePicker = AccountPicker.newChooseAccountIntent(null, null, new String[]{GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE},
-                true, null, null, null, null);
-        startActivityForResult(googlePicker, REQUEST_CODE_ASK_PERMISSIONS);
+        signIn();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -103,8 +108,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_CODE_ASK_PERMISSIONS && resultCode == RESULT_OK) {
-            accountEmail = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+            setAccountEmail(data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME));
         }
+    }
+
+    public void setAccountEmail(String accountEmail) {
+        SharedPreferences.Editor editor = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE).edit();
+        editor.putString(ACCOUNT_EMAIL_KEY, accountEmail);
+        editor.apply();
+        this.accountEmail = accountEmail;
     }
 
     private void showMessage(int dataId, int personalDataId) {
@@ -116,5 +128,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         loveText = array[new Random().nextInt(array.length)];
         loveTextView.setText(loveText);
+    }
+
+    private void signIn() {
+        SharedPreferences prefs = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        setAccountEmail(prefs.getString(ACCOUNT_EMAIL_KEY, null));
+        if (accountEmail == null) {
+            Intent googlePicker = AccountPicker.newChooseAccountIntent(null, null, new String[]{GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE},
+                    true, null, null, null, null);
+            try {
+                startActivityForResult(googlePicker, REQUEST_CODE_ASK_PERMISSIONS);
+            } catch (ActivityNotFoundException ex) {
+                // This device may not have Google Play Services installed.
+                Log.w(LOG_TAG, "This device may not have Google Play Services installed");
+            }
+        }
     }
 }
