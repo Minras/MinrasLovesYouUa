@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="ask_array_personal"></string-array>
+    <string-array name="ask_array_personal">
+        <item>Олю, ну що ти таке питаєшь?!! Звичайно ж! Так!</item>
+    </string-array>
     <string-array name="ask_array">
         <item>Звичайно ж, я тебе кохаю. </item>
         <item>Так-так-тааааак! Люблю тебе, мила!</item>
@@ -18,6 +20,7 @@
         <item>А хіба в мене є вибір?!!</item>
         <item>Звичайно, мала, люблю тебе.</item>
         <item>Ти назавжди оселилася в моєму серці.</item>
+        <item>Дуже-дуже!</item>
     </string-array>
     <string-array name="tell_array_personal">
         <item>М\'яка Оля, Теплий Мінрас, Пускін - руда тварюка…</item>
@@ -45,5 +48,6 @@
         <item>Ти так мені зараз потрібна…</item>
         <item>Ти потрібна мені тут і зараз. Дуже.</item>
         <item>В Новий Рік лише ти мені потрібна під ялинкою!</item>
+        <item>Рибко моя! Зайченятко! Зозуленько! Дай обійму!!!</item>
     </string-array>
 </resources>
