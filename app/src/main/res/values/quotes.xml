@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="ask_array_personal">
-        <item>Олю, ну що ти таке питаєшь?!! Звичайно ж! Так!</item>
+        <item>Олю, ну що ти таке питаєш?!! Звичайно ж! Так!</item>
     </string-array>
     <string-array name="ask_array">
         <item>Звичайно ж, я тебе кохаю. </item>
