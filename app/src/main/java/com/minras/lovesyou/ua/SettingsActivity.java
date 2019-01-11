@@ -12,8 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-import com.google.android.gms.auth.GoogleAuthUtil;
 import com.google.android.gms.common.AccountPicker;
 
 import static com.minras.lovesyou.ua.Config.INTENT_DATA_KEY_SETTINGS;
@@ -66,9 +66,19 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_CODE_ASK_PERMISSIONS && resultCode == RESULT_OK) {
-            settings.setAccountEmail(data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME));
+        if (requestCode == REQUEST_CODE_ASK_PERMISSIONS) {
+            final String message;
+            final String newEmail;
+            if (resultCode == RESULT_OK) {
+                newEmail = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+                message = "Аккаунт успішно прив'язано.";
+            } else {
+                newEmail = null;
+                message = "Не вдалося прив'язати аккаунт. Або ви його успішно відв'язали, тоді усе гаразд.";
+            }
+            settings.setAccountEmail(newEmail);
             settings.save(sharedPreferences);
+            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
         }
     }
 
