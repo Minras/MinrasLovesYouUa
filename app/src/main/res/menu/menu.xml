@@ -10,4 +10,11 @@
         android:icon="@drawable/ic_copyright_white_24dp"
         android:title="@string/action_copyright"
         app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_settings_white_24dp"
+        android:title="@string/action_settings"
+        app:showAsAction="ifRoom"
+        />
 </menu>
