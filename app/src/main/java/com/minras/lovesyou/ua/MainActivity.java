@@ -1,49 +1,41 @@
 package com.minras.lovesyou.ua;
 
-import android.accounts.AccountManager;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.google.android.gms.auth.GoogleAuthUtil;
-import com.google.android.gms.common.AccountPicker;
-
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Random;
 
+import static com.minras.lovesyou.ua.Config.INTENT_DATA_KEY_SETTINGS;
+import static com.minras.lovesyou.ua.Config.REQUEST_CODE_SETTINGS;
 import static com.minras.lovesyou.ua.Config.SHARED_PREFERENCES_NAME;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    final private String ACCOUNT_EMAIL_KEY = "accountEmail";
-    final private String LOG_TAG = "DEBUG_TAG";
-    final private int REQUEST_CODE_ASK_PERMISSIONS = 56171;
-
     private int largeIconsTreshold = 2000;
     private String loveText = "";
-    private String accountEmail = null;
     private TextView loveTextView;
+
+    private SharedPreferences sharedPreferences;
+    private Settings settings = new Settings();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // log in with google account to get a registered email
-        signIn();
+        sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ImageButton btnAsk = (ImageButton) findViewById(R.id.askButton);
         btnAsk.setOnClickListener(this);
+
+        settings.init(sharedPreferences);
 
         loveTextView = (TextView) findViewById(R.id.love_text_view);
 
@@ -86,7 +80,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
 
             case R.id.action_settings:
-                startActivity(new Intent(this, SettingsActivity.class));
+                Intent intent = new Intent(this, SettingsActivity.class);
+                intent.putExtra(INTENT_DATA_KEY_SETTINGS, this.settings);
+                startActivityForResult(intent, REQUEST_CODE_SETTINGS);
                 return true;
 
             default:
@@ -108,44 +104,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_CODE_ASK_PERMISSIONS && resultCode == RESULT_OK) {
-            setAccountEmail(data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME));
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_SETTINGS) {
+            if (data.hasExtra(INTENT_DATA_KEY_SETTINGS)) {
+                settings = (Settings) data.getExtras().get(INTENT_DATA_KEY_SETTINGS);
+            }
         }
-    }
-
-    public void setAccountEmail(String accountEmail) {
-        SharedPreferences.Editor editor = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE).edit();
-        editor.putString(ACCOUNT_EMAIL_KEY, accountEmail);
-        editor.apply();
-        this.accountEmail = accountEmail;
     }
 
     private void showMessage(int dataId, int personalDataId) {
         String[] array;
-        if ("ol.zvereva@gmail.com".equals(accountEmail) || "andrey.shchurkov@gmail.com".equals(accountEmail)) {
+        if ("ol.zvereva@gmail.com".equals(settings.getAccountEmail()) || "andrey.shchurkov@gmail.com".equals(settings.getAccountEmail())) {
             array = ArrayUtils.addAll(getResources().getStringArray(dataId), getResources().getStringArray(personalDataId));
         } else {
             array = getResources().getStringArray(dataId);
         }
         loveText = array[new Random().nextInt(array.length)];
         loveTextView.setText(loveText);
-    }
-
-    private void signIn() {
-        SharedPreferences prefs = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
-        setAccountEmail(prefs.getString(ACCOUNT_EMAIL_KEY, null));
-        if (accountEmail == null) {
-            Intent googlePicker = AccountPicker.newChooseAccountIntent(null, null, new String[]{GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE},
-                    true, null, null, null, null);
-            try {
-                startActivityForResult(googlePicker, REQUEST_CODE_ASK_PERMISSIONS);
-            } catch (ActivityNotFoundException ex) {
-                // This device may not have Google Play Services installed.
-                Log.w(LOG_TAG, "This device may not have Google Play Services installed");
-            }
-        }
     }
 }

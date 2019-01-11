@@ -5,6 +5,8 @@
     <string name="title_activity_copyright">Copyright</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="btn_signin">Sign In</string>
+
     <string name="tell_btn_title">Скажи мені!</string>
     <string name="ask_btn_title">Ти мене кохаєшь?</string>
     <string name="love_text_frame_descr">Cloud wrapper</string>
@@ -54,7 +56,5 @@
         <item>Ти так мені зараз потрібна…</item>
         <item>Ти потрібна мені тут і зараз. Дуже.</item>
         <item>В Новий Рік лише ти мені потрібна під ялинкою!</item>
-        <item>В Новий Рік лише ти мені потрібна під ялинкою!</item>
-        <item>В Новий Рік лише ти мені потрібна під ялинкою!</item><!-- TODO remove double-->
     </string-array>
 </resources>
