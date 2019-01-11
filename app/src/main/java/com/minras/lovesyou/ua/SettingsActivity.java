@@ -85,7 +85,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
      * Sign in with google account to get a registered email
      */
     private void signIn() {
-        Intent googlePicker = AccountPicker.newChooseAccountIntent(null, null, new String[]{GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE},
+        Intent googlePicker = AccountPicker.newChooseAccountIntent(null, null, null,
                 true, null, null, null, null);
         try {
             startActivityForResult(googlePicker, REQUEST_CODE_ASK_PERMISSIONS);
