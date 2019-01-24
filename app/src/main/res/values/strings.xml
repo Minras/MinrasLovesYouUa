@@ -9,6 +9,6 @@
     <string name="txt_signin">Тут можна прив\'язати свій аккаунт. Рекомендую, якщо у вас є особисті цитати:</string>
 
     <string name="tell_btn_title">Скажи мені!</string>
-    <string name="ask_btn_title">Ти мене кохаєшь?</string>
+    <string name="ask_btn_title">Ти мене кохаєш?</string>
     <string name="love_text_frame_descr">Cloud wrapper</string>
 </resources>
