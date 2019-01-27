@@ -31,7 +31,11 @@
     <string-array name="tell_array_morning">
         <item>Доброго ранку, люба!</item>
     </string-array>
+    <string-array name="tell_array_day" />
     <string-array name="tell_array_night">
         <item>Люба, вже пізно!.. Може, спатоньки?</item>
+    </string-array>
+    <string-array name="tell_array_winter">
+        <item>Ото сісти б біля каміну, накритися ковдрою і пересидіти так всю зиму.</item>
     </string-array>
 </resources>
