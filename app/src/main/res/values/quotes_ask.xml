@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ask_array_personal">
+        <item>Олю, ну що ти таке питаєш?!! Звичайно ж! Так!</item>
+    </string-array>
+    <string-array name="ask_array">
+        <item>Звичайно ж, я тебе кохаю. </item>
+        <item>Так-так-тааааак! Люблю тебе, мила!</item>
+        <item>Так. Я тебе кохаю.</item>
+        <item>Кожного разу, коли тебе бачу, знову закохуюсь як уперше!</item>
+        <item>Я твій!</item>
+        <item>Я тобою захоплююсь до нестями!</item>
+        <item>Кохаю аж не можу.</item>
+        <item>Я просто до нестями закоханий.</item>
+        <item>Авжеж!</item>
+        <item>Без тебе мені ніяк!..</item>
+        <item>Не можу без тебе!</item>
+        <item>Сонце моє, не можу без тебе!</item>
+        <item>Та ото ж бо й воно, що інакше ніяк…</item>
+        <item>А хіба в мене є вибір?!!</item>
+        <item>Звичайно, мала, люблю тебе.</item>
+        <item>Ти назавжди оселилася в моєму серці.</item>
+        <item>Дуже-дуже!</item>
+    </string-array>
+    <string-array name="ask_array_morning">
+    </string-array>
+    <string-array name="ask_array_night">
+        <item>Звичайно ж, кохаю! Але вже трохи запізно, досить розмов, нумо спати!</item>
+    </string-array>
+</resources>
