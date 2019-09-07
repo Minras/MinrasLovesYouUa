@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     final private String PREFIX_ASK = "ask";
     final private String PREFIX_TELL = "tell";
 
-    private int largeIconsTreshold = 2000;
     private String loveText = "";
     private TextView loveTextView;
 
@@ -57,12 +56,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         loveTextView = (TextView) findViewById(R.id.love_text_view);
 
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        if (displayMetrics.widthPixels > largeIconsTreshold || displayMetrics.heightPixels > largeIconsTreshold) {
-            btnTell.setImageResource(R.drawable.unicorn_256_1049961);
-            btnAsk.setImageResource(R.drawable.unicorn_256_1049947);
-        }
+//        int largeIconsTreshold = 2000;
+//        Looks like the code below tried to make a bigger picture for bigger screens, but it was too big actually
+//        DisplayMetrics displayMetrics = new DisplayMetrics();
+//        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+//        if (displayMetrics.widthPixels > largeIconsTreshold || displayMetrics.heightPixels > largeIconsTreshold) {
+//            btnTell.setImageResource(R.drawable.unicorn_256_1049961);
+//            btnAsk.setImageResource(R.drawable.unicorn_256_1049947);
+//        }
 
         showMessage(PREFIX_TELL);
     }
