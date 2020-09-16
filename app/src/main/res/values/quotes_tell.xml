@@ -34,8 +34,15 @@
     <string-array name="tell_array_night">
         <item>Люба, вже пізно!.. Може, спатоньки?</item>
     </string-array>
+
     <string-array name="tell_array_winter">
         <item>Ото сісти б біля каміну, накритися ковдрою і пересидіти так всю зиму.</item>
         <item>В Новий Рік лише ти мені потрібна під ялинкою!</item>
+    </string-array>
+    <string-array name="tell_array_autumn" />
+
+    <string-array name="tell_array_halloween">
+        <item>Ти ж моя мишонька летюча! Кусь!</item>
+        <item>Ох, які в тебе очі - глибокі як могили на кладовищах Трансильванії...</item>
     </string-array>
 </resources>

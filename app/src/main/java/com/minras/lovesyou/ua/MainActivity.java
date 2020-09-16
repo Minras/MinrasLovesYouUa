@@ -6,7 +6,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -138,24 +137,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private List<String> getTimeBasedQuotes(final String prefix) {
         int resId;
-        List<String> list = new ArrayList<>();
+        List<String> suffixes = new ArrayList<>();
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         int month = Calendar.getInstance().get(Calendar.MONTH);
         if (isMorning(hour)) {
-            resId = getResources().getIdentifier(prefix + "_array_morning", "array", pkg);
-            list.addAll(Arrays.asList(getResources().getStringArray(resId)));
+            suffixes.add("morning");
         } else if (isDay(hour)) {
-            resId = getResources().getIdentifier(prefix + "_array_day", "array", pkg);
-            list.addAll(Arrays.asList(getResources().getStringArray(resId)));
+            suffixes.add("day");
         } else if (isNight(hour)) {
-            resId = getResources().getIdentifier(prefix + "_array_night", "array", pkg);
-            list.addAll(Arrays.asList(getResources().getStringArray(resId)));
+            suffixes.add("night");
         }
         if (isWinter(month)) {
-            resId = getResources().getIdentifier(prefix + "_array_winter", "array", pkg);
-            list.addAll(Arrays.asList(getResources().getStringArray(resId)));
+            suffixes.add("winter");
         }
-        return list;
+        if ((10 == month && 31 == day) || (11 == month && 1 == day)) {
+            // three times more probability to see the quote
+            suffixes.add("halloween");
+            suffixes.add("halloween");
+            suffixes.add("halloween");
+        }
+
+        List<String> quotes = new ArrayList<>();
+        for (String suffix : suffixes) {
+            resId = getResources().getIdentifier(prefix + "_array_" + suffix, "array", pkg);
+            quotes.addAll(Arrays.asList(getResources().getStringArray(resId)));
+        }
+        return quotes;
     }
 
     private void showMessage(final String prefix) {

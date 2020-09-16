@@ -22,10 +22,17 @@
         <item>Ти назавжди оселилася в моєму серці.</item>
         <item>Дуже-дуже!</item>
     </string-array>
+
     <string-array name="ask_array_morning" />
     <string-array name="ask_array_day" />
     <string-array name="ask_array_night">
         <item>Звичайно ж, кохаю! Але вже трохи запізно, досить розмов, нумо спати!</item>
     </string-array>
+
     <string-array name="ask_array_winter" />
+    <string-array name="ask_array_autumn" />
+
+    <string-array name="ask_array_halloween">
+        <item>А чи не випити нам чогось червоного як посмішка дядька Дракули?</item>
+    </string-array>
 </resources>
