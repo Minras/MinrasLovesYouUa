@@ -30,7 +30,9 @@
     </string-array>
 
     <string-array name="ask_array_winter" />
-    <string-array name="ask_array_autumn" />
+    <string-array name="ask_array_autumn">
+        <item>Листя в'яне, зайченятка сумують, дощів все більше - люба, може, чаю?</item>
+    </string-array>
 
     <string-array name="ask_array_halloween">
         <item>А чи не випити нам чогось червоного як посмішка дядька Дракули?</item>
