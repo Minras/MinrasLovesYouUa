@@ -30,8 +30,11 @@
     </string-array>
 
     <string-array name="ask_array_winter" />
+    <string-array name="ask_array_spring" />
+    <string-array name="ask_array_summer" />
     <string-array name="ask_array_autumn">
         <item>Листя в\'яне, зайченятка сумують, дощів все більше - люба, може, чаю?</item>
+        <item>Може на морько валятися на пісочку? Поки воно зовсім не замерзло...</item>
     </string-array>
 
     <string-array name="ask_array_halloween">

@@ -39,6 +39,8 @@
         <item>Ото сісти б біля каміну, накритися ковдрою і пересидіти так всю зиму.</item>
         <item>В Новий Рік лише ти мені потрібна під ялинкою!</item>
     </string-array>
+    <string-array name="tell_array_spring" />
+    <string-array name="tell_array_summer" />
     <string-array name="tell_array_autumn" />
 
     <string-array name="tell_array_halloween">
