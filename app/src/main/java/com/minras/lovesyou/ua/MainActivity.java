@@ -131,36 +131,56 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return (hour == 23) || (hour >= 0 && hour <= 3);
     }
 
-    private boolean isWinter(final int month) {
-        return month == 0 || month == 1 || month == 11;
+    private Suffix calculateSeasonName(final int month) {
+        switch (month) {
+            case 0:
+            case 1:
+            case 11:
+                return Suffix.WINTER;
+            case 2:
+            case 3:
+            case 4:
+                return Suffix.SPRING;
+            case 5:
+            case 6:
+            case 7:
+                return Suffix.SUMMER;
+            case 8:
+            case 9:
+            case 10:
+                return Suffix.AUTUMN;
+            default:
+                return null;
+        }
     }
 
     private List<String> getTimeBasedQuotes(final String prefix) {
         int resId;
-        List<String> suffixes = new ArrayList<>();
+        List<Suffix> suffixes = new ArrayList<>();
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         int month = Calendar.getInstance().get(Calendar.MONTH);
         if (isMorning(hour)) {
-            suffixes.add("morning");
+            suffixes.add(Suffix.MORNING);
         } else if (isDay(hour)) {
-            suffixes.add("day");
+            suffixes.add(Suffix.DAY);
         } else if (isNight(hour)) {
-            suffixes.add("night");
+            suffixes.add(Suffix.NIGHT);
         }
-        if (isWinter(month)) {
-            suffixes.add("winter");
+        final Suffix season = calculateSeasonName(month);
+        if (null != season) {
+            suffixes.add(season);
         }
         if ((10 == month && 31 == day) || (11 == month && 1 == day)) {
             // three times more probability to see the quote
-            suffixes.add("halloween");
-            suffixes.add("halloween");
-            suffixes.add("halloween");
+            suffixes.add(Suffix.HALLOWEEN);
+            suffixes.add(Suffix.HALLOWEEN);
+            suffixes.add(Suffix.HALLOWEEN);
         }
 
         List<String> quotes = new ArrayList<>();
-        for (String suffix : suffixes) {
-            resId = getResources().getIdentifier(prefix + "_array_" + suffix, "array", pkg);
+        for (Suffix suffix : suffixes) {
+            resId = getResources().getIdentifier(prefix + "_array_" + suffix.getValue(), "array", pkg);
             quotes.addAll(Arrays.asList(getResources().getStringArray(resId)));
         }
         return quotes;
@@ -176,5 +196,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         list.addAll(getTimeBasedQuotes(prefix));
         loveText = list.get(new Random().nextInt(list.size()));
         loveTextView.setText(loveText);
+    }
+
+    public enum Suffix {
+
+        MORNING("morning"),
+        DAY("day"),
+        NIGHT("night"),
+
+        WINTER("winter"),
+        SPRING("spring"),
+        SUMMER("summer"),
+        AUTUMN("autumn"),
+
+        HALLOWEEN("halloween");
+
+        private String value;
+
+        Suffix(String suffix) {
+            this.value = suffix;
+        }
+
+        public String getValue() {
+            return value;
+        }
     }
 }
