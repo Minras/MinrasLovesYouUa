@@ -37,9 +37,10 @@
 
     <string-array name="tell_array_winter">
         <item>Ото сісти б біля каміну, накритися ковдрою і пересидіти так всю зиму.</item>
-        <item>В Новий Рік лише ти мені потрібна під ялинкою!</item>
     </string-array>
-    <string-array name="tell_array_spring" />
+    <string-array name="tell_array_spring">
+        <item>Поля! Квіти!! Пішли, поки літо не настало і все не пов'яло!!!</item>
+    </string-array>
     <string-array name="tell_array_summer" />
     <string-array name="tell_array_autumn" />
 
@@ -48,5 +49,7 @@
         <item>Ох, які в тебе очі - глибокі як могили на кладовищах Трансильванії...</item>
     </string-array>
     <string-array name="tell_array_xmas" />
-    <string-array name="tell_array_newyear" />
+    <string-array name="tell_array_newyear">
+        <item>В Новий Рік лише ти мені потрібна під ялинкою!</item>
+    </string-array>
 </resources>
