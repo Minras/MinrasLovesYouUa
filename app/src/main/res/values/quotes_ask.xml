@@ -21,6 +21,8 @@
         <item>Звичайно, мала, люблю тебе.</item>
         <item>Ти назавжди оселилася в моєму серці.</item>
         <item>Дуже-дуже!</item>
+        <item>Є така тема!</item>
+        <item>Дуже.</item>
     </string-array>
 
     <string-array name="ask_array_morning" />
@@ -40,4 +42,7 @@
     <string-array name="ask_array_halloween">
         <item>А чи не випити нам чогось червоного як посмішка дядька Дракули?</item>
     </string-array>
+
+    <string-array name="ask_array_xmas" />
+    <string-array name="ask_array_newyear" />
 </resources>

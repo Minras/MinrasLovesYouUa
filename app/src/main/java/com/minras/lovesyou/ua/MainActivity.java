@@ -171,11 +171,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (null != season) {
             suffixes.add(season);
         }
+
         if ((10 == month && 31 == day) || (11 == month && 1 == day)) {
             // three times more probability to see the quote
             suffixes.add(Suffix.HALLOWEEN);
             suffixes.add(Suffix.HALLOWEEN);
             suffixes.add(Suffix.HALLOWEEN);
+        }
+        if (12 == month && day >=20 && day <= 27) {
+            // three times more probability to see the quote
+            suffixes.add(Suffix.XMAS);
+            suffixes.add(Suffix.XMAS);
+            suffixes.add(Suffix.XMAS);
+        }
+        if ((1 == month && day >=1 && day <= 7) || (12 == month && day > 24)) {
+            // three times more probability to see the quote
+            suffixes.add(Suffix.NEWYEAR);
+            suffixes.add(Suffix.NEWYEAR);
+            suffixes.add(Suffix.NEWYEAR);
         }
 
         List<String> quotes = new ArrayList<>();
@@ -209,7 +222,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SUMMER("summer"),
         AUTUMN("autumn"),
 
-        HALLOWEEN("halloween");
+        HALLOWEEN("halloween"),
+        NEWYEAR("newyear"),
+        XMAS("xmas");
 
         private String value;
 

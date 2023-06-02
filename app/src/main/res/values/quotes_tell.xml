@@ -47,4 +47,6 @@
         <item>Ти ж моя мишонька летюча! Кусь!</item>
         <item>Ох, які в тебе очі - глибокі як могили на кладовищах Трансильванії...</item>
     </string-array>
+    <string-array name="tell_array_xmas" />
+    <string-array name="tell_array_newyear" />
 </resources>
