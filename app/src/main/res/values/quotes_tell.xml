@@ -26,9 +26,12 @@
         <item>Ти так мені зараз потрібна…</item>
         <item>Ти потрібна мені тут і зараз. Дуже.</item>
         <item>Рибко моя! Зайченятко! Зозуленько! Дай обійму!!!</item>
+        <item>Ме-е-е-е! Тобто цьомки!!</item>
+        <item>Цьомки!</item>
     </string-array>
     <string-array name="tell_array_morning">
         <item>Доброго ранку, люба!</item>
+        <item>Пташки співають, сонечко ніби-то підіймається… Виглядає як добрий ранок!</item>
     </string-array>
     <string-array name="tell_array_day" />
     <string-array name="tell_array_night">
