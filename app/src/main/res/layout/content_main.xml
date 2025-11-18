@@ -33,8 +33,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="@string/tell_btn_title" />
+            android:text="@string/tell_btn_title"
+            android:textAlignment="center" />
     </LinearLayout>
 
     <LinearLayout
@@ -55,62 +55,64 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="@string/ask_btn_title" />
+            android:text="@string/ask_btn_title"
+            android:textAlignment="center" />
     </LinearLayout>
 
-    <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".MainActivity"
+        tools:showIn="@layout/activity_main">
 
-        <android.support.constraint.Guideline
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/left_guideline"
-            app:layout_constraintGuide_percent=".32"
-            android:orientation="vertical"/>
-
-        <android.support.constraint.Guideline
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".32" />
+
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/right_guideline"
-            app:layout_constraintGuide_percent=".68"
-            android:orientation="vertical"/>
-
-        <android.support.constraint.Guideline
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".68" />
+
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/top_guideline"
-            app:layout_constraintGuide_percent=".32"
-            android:orientation="horizontal"/>
-
-        <android.support.constraint.Guideline
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".32" />
+
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/bottom_guideline"
-            app:layout_constraintGuide_percent=".68"
-            android:orientation="horizontal"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".68" />
 
         <TextView
             android:id="@+id/love_text_view"
             style="@style/loveTextView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintLeft_toLeftOf="@+id/left_guideline"
-            app:layout_constraintRight_toRightOf="@+id/right_guideline"
-            app:layout_constraintTop_toTopOf="@+id/top_guideline"
-            app:layout_constraintBottom_toBottomOf="@+id/bottom_guideline"
-
+            android:fontFamily="casual"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/white"
+
             android:textSize="20sp"
             android:textStyle="bold"
-            android:fontFamily="casual"
-            />
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_guideline"
+            app:layout_constraintLeft_toLeftOf="@+id/left_guideline"
+            app:layout_constraintRight_toRightOf="@+id/right_guideline"
+            app:layout_constraintTop_toTopOf="@+id/top_guideline" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
