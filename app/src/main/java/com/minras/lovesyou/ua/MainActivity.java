@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +24,7 @@ import static com.minras.lovesyou.ua.Config.INTENT_DATA_KEY_SETTINGS;
 import static com.minras.lovesyou.ua.Config.REQUEST_CODE_SETTINGS;
 import static com.minras.lovesyou.ua.Config.SHARED_PREFERENCES_NAME;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     final private String PREFIX_ASK = "ask";
     final private String PREFIX_TELL = "tell";
@@ -31,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView loveTextView;
 
     private String pkg;
-    private SharedPreferences sharedPreferences;
     private Settings settings = new Settings();
 
     @Override
@@ -40,16 +41,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         pkg = getPackageName();
-        sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ImageButton btnTell = (ImageButton) findViewById(R.id.tellButton);
-        btnTell.setOnClickListener(this);
+        ImageButton tellButton = (ImageButton) findViewById(R.id.tellButton);
+        tellButton.setOnClickListener(v -> showMessage(PREFIX_TELL));
 
-        ImageButton btnAsk = (ImageButton) findViewById(R.id.askButton);
-        btnAsk.setOnClickListener(this);
+        ImageButton askButton = (ImageButton) findViewById(R.id.askButton);
+        askButton.setOnClickListener(v -> showMessage(PREFIX_ASK));
 
         settings.init(sharedPreferences);
 
@@ -65,18 +66,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        }
 
         showMessage(PREFIX_TELL);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.askButton:
-                showMessage(PREFIX_ASK);
-                break;
-            case R.id.tellButton:
-                showMessage(PREFIX_TELL);
-                break;
-        }
     }
 
     @Override
@@ -179,13 +168,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             suffixes.add(Suffix.HALLOWEEN);
             suffixes.add(Suffix.HALLOWEEN);
         }
-        if (12 == month && day >=20 && day <= 27) {
+        if (12 == month && day >= 20 && day <= 27) {
             // three times more probability to see the quote
             suffixes.add(Suffix.XMAS);
             suffixes.add(Suffix.XMAS);
             suffixes.add(Suffix.XMAS);
         }
-        if ((1 == month && day >=1 && day <= 7) || (12 == month && day > 24)) {
+        if ((1 == month && day >= 1 && day <= 7) || (12 == month && day > 24)) {
             // three times more probability to see the quote
             suffixes.add(Suffix.NEWYEAR);
             suffixes.add(Suffix.NEWYEAR);
