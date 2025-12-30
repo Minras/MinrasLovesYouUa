@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_SETTINGS) {
             if (data.hasExtra(INTENT_DATA_KEY_SETTINGS)) {
                 settings = (Settings) data.getExtras().get(INTENT_DATA_KEY_SETTINGS);
@@ -205,6 +206,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if ("ol.zvereva@gmail.com".equals(settings.getAccountEmail()) || "andrey.shchurkov@gmail.com".equals(settings.getAccountEmail())) {
             resId = getResources().getIdentifier(prefix + "_array_personal", "array", pkg);
             list.addAll(Arrays.asList(getResources().getStringArray(resId)));
+            int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+            int month = Calendar.getInstance().get(Calendar.MONTH);
+            if (day == 8 && month == 1) {
+                resId = getResources().getIdentifier(prefix + "_array_personal_birthday", "array", pkg);
+                list.addAll(Arrays.asList(getResources().getStringArray(resId)));
+            }
         }
         list.addAll(getTimeBasedQuotes(prefix));
         loveText = list.get(new Random().nextInt(list.size()));

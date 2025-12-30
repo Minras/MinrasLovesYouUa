@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="tell_array_personal_birthday">
+        <item>Ой, а в кого це день народження? Йди вже подарунки розпаковуй.</item>
+        <item>З днюхою!</item>
+        <item>З днем! Меее!!</item>
+        <item>Хеппі бйорсдей!!</item>
+    </string-array>
     <string-array name="tell_array_personal">
-        <item>М\'яка Оля, Теплий Мінрас, Пускін - руда тварюка…</item>
+        <item>М\'яка Оля, теплий Мінрас, Пускін - руда тварюка…</item>
         <item>Ведмідь! Нам потрібен ведмідь!</item>
     </string-array>
     <string-array name="tell_array">

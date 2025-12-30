@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="ask_array_personal_birthday" />
     <string-array name="ask_array_personal">
         <item>Олю, ну що ти таке питаєш?!! Звичайно ж! Так!</item>
     </string-array>
