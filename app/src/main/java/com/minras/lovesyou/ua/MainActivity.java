@@ -10,7 +10,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -70,19 +69,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_copyright:
-                startActivity(new Intent(this, CopyrightActivity.class));
-                return true;
-
-            case R.id.action_settings:
-                Intent intent = new Intent(this, SettingsActivity.class);
-                intent.putExtra(INTENT_DATA_KEY_SETTINGS, this.settings);
-                startActivityForResult(intent, REQUEST_CODE_SETTINGS);
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
+        int id = item.getItemId();
+        if (id == R.id.action_copyright) {
+            startActivity(new Intent(this, CopyrightActivity.class));
+            return true;
+        } else if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            intent.putExtra(INTENT_DATA_KEY_SETTINGS, this.settings);
+            startActivityForResult(intent, REQUEST_CODE_SETTINGS);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 
