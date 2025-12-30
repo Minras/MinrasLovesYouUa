@@ -43,18 +43,18 @@ public class MainActivity extends AppCompatActivity {
         pkg = getPackageName();
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ImageButton tellButton = (ImageButton) findViewById(R.id.tellButton);
+        ImageButton tellButton = findViewById(R.id.tellButton);
         tellButton.setOnClickListener(v -> showMessage(PREFIX_TELL));
 
-        ImageButton askButton = (ImageButton) findViewById(R.id.askButton);
+        ImageButton askButton = findViewById(R.id.askButton);
         askButton.setOnClickListener(v -> showMessage(PREFIX_ASK));
 
         settings.init(sharedPreferences);
 
-        loveTextView = (TextView) findViewById(R.id.love_text_view);
+        loveTextView = findViewById(R.id.love_text_view);
 
 //        int largeIconsTreshold = 2000;
 //        Looks like the code below tried to make a bigger picture for bigger screens, but it was too big actually
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
         NEWYEAR("newyear"),
         XMAS("xmas");
 
-        private String value;
+        private final String value;
 
         Suffix(String suffix) {
             this.value = suffix;
