@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         loveTextView.setText(loveText);
     }
@@ -99,9 +100,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_SETTINGS) {
-            if (data.hasExtra(INTENT_DATA_KEY_SETTINGS)) {
-                settings = (Settings) data.getExtras().get(INTENT_DATA_KEY_SETTINGS);
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_SETTINGS && data != null) {
+            Settings receivedSettings = (Settings) data.getSerializableExtra(INTENT_DATA_KEY_SETTINGS);
+            if (receivedSettings != null) {
+                settings = receivedSettings;
             }
         }
     }
