@@ -11,4 +11,6 @@
     <string name="tell_btn_title">Скажи мені!</string>
     <string name="ask_btn_title">Ти мене кохаєш?</string>
     <string name="love_text_frame_descr">Cloud wrapper</string>
+    <string name="tell_btn_description">A button making the unicorn say what he has to say</string>
+    <string name="ask_btn_description">A button making the unicorn answer the question</string>
 </resources>
