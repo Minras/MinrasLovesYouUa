@@ -122,21 +122,21 @@ public class MainActivity extends AppCompatActivity {
 
     private Suffix calculateSeasonName(final int month) {
         switch (month) {
-            case 0:
             case 1:
-            case 11:
-                return Suffix.WINTER;
             case 2:
+            case 12:
+                return Suffix.WINTER;
             case 3:
             case 4:
-                return Suffix.SPRING;
             case 5:
+                return Suffix.SPRING;
             case 6:
             case 7:
-                return Suffix.SUMMER;
             case 8:
+                return Suffix.SUMMER;
             case 9:
             case 10:
+            case 11:
                 return Suffix.AUTUMN;
             default:
                 return null;
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         List<Suffix> suffixes = new ArrayList<>();
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-        int month = Calendar.getInstance().get(Calendar.MONTH);
+        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
         if (isMorning(hour)) {
             suffixes.add(Suffix.MORNING);
         } else if (isDay(hour)) {
