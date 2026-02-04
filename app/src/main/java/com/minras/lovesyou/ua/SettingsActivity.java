@@ -10,7 +10,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -19,7 +18,7 @@ import com.google.android.gms.common.AccountPicker;
 import static com.minras.lovesyou.ua.Config.INTENT_DATA_KEY_SETTINGS;
 import static com.minras.lovesyou.ua.Config.SHARED_PREFERENCES_NAME;
 
-public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
+public class SettingsActivity extends AppCompatActivity {
 
     final private String LOG_TAG = "DEBUG_TAG";
     final private int REQUEST_CODE_ASK_PERMISSIONS = 56171;
@@ -48,18 +47,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         ab.setDisplayHomeAsUpEnabled(true);
 
         Button btnSignin = (Button) findViewById(R.id.btn_signin);
-        btnSignin.setOnClickListener(this);
+        btnSignin.setOnClickListener(v -> signIn());
 
         settings.init(sharedPreferences);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_signin:
-                signIn();
-                break;
-        }
     }
 
     @Override
