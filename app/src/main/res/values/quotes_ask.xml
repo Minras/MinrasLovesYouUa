@@ -48,4 +48,7 @@
 
     <string-array name="ask_array_xmas" />
     <string-array name="ask_array_newyear" />
+    <string-array name="ask_array_valentines">
+        <item>Чотирнадцяте? Звичайно, кохаю!</item>
+    </string-array>
 </resources>

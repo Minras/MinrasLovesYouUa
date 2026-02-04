@@ -61,4 +61,9 @@
     <string-array name="tell_array_newyear">
         <item>В Новий Рік лише ти мені потрібна під ялинкою!</item>
     </string-array>
+    <string-array name="tell_array_valentines">
+        <item>Квітоньки, цукерки, листівки… Валентинки!</item>
+        <item>Терміново треба щось рожеве!</item>
+        <item>Хто бачив серце дракона! Терміново ж треба!</item>
+    </string-array>
 </resources>
