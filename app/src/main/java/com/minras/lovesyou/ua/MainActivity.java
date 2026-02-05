@@ -17,6 +17,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -143,6 +144,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private List<Suffix> calculateHolidayName(final int day, final int month) {
+        List<Suffix> output = new ArrayList<>();
+        if ((10 == month && 31 == day) || (11 == month && 1 == day)) {
+            Collections.addAll(output, Suffix.HALLOWEEN, Suffix.HALLOWEEN, Suffix.HALLOWEEN);
+        }
+        if (12 == month && day >= 20 && day <= 27) {
+            Collections.addAll(output, Suffix.XMAS, Suffix.XMAS, Suffix.XMAS);
+        }
+        if ((1 == month && day >= 1 && day <= 7) || (12 == month && day > 24)) {
+            Collections.addAll(output, Suffix.NEWYEAR, Suffix.NEWYEAR, Suffix.NEWYEAR);
+        }
+        return output;
+    }
+
     private List<String> getTimeBasedQuotes(final String prefix) {
         int resId;
         List<Suffix> suffixes = new ArrayList<>();
@@ -161,24 +176,7 @@ public class MainActivity extends AppCompatActivity {
             suffixes.add(season);
         }
 
-        if ((10 == month && 31 == day) || (11 == month && 1 == day)) {
-            // three times more probability to see the quote
-            suffixes.add(Suffix.HALLOWEEN);
-            suffixes.add(Suffix.HALLOWEEN);
-            suffixes.add(Suffix.HALLOWEEN);
-        }
-        if (12 == month && day >= 20 && day <= 27) {
-            // three times more probability to see the quote
-            suffixes.add(Suffix.XMAS);
-            suffixes.add(Suffix.XMAS);
-            suffixes.add(Suffix.XMAS);
-        }
-        if ((1 == month && day >= 1 && day <= 7) || (12 == month && day > 24)) {
-            // three times more probability to see the quote
-            suffixes.add(Suffix.NEWYEAR);
-            suffixes.add(Suffix.NEWYEAR);
-            suffixes.add(Suffix.NEWYEAR);
-        }
+        suffixes.addAll(calculateHolidayName(day, month));
 
         List<String> quotes = new ArrayList<>();
         for (Suffix suffix : suffixes) {
