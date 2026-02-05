@@ -155,6 +155,9 @@ public class MainActivity extends AppCompatActivity {
         if ((1 == month && day >= 1 && day <= 7) || (12 == month && day > 24)) {
             Collections.addAll(output, Suffix.NEWYEAR, Suffix.NEWYEAR, Suffix.NEWYEAR);
         }
+        if (2 == month && day >= 13 && day <= 15) {
+            Collections.addAll(output, Suffix.VALENTINES, Suffix.VALENTINES, Suffix.VALENTINES);
+        }
         return output;
     }
 
@@ -215,8 +218,9 @@ public class MainActivity extends AppCompatActivity {
         SUMMER("summer"),
         AUTUMN("autumn"),
 
-        HALLOWEEN("halloween"),
         NEWYEAR("newyear"),
+        VALENTINES("valentines"),
+        HALLOWEEN("halloween"),
         XMAS("xmas");
 
         private final String value;
