@@ -14,12 +14,7 @@ import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
 
 import static com.minras.lovesyou.ua.Config.INTENT_DATA_KEY_SETTINGS;
 import static com.minras.lovesyou.ua.Config.REQUEST_CODE_SETTINGS;
@@ -27,31 +22,28 @@ import static com.minras.lovesyou.ua.Config.SHARED_PREFERENCES_NAME;
 
 public class MainActivity extends AppCompatActivity {
 
-    final private String PREFIX_ASK = "ask";
-    final private String PREFIX_TELL = "tell";
-
     private String loveText = "";
     private TextView loveTextView;
 
-    private String pkg;
     private Settings settings = new Settings();
+    private QuoteSelector quoteSelector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        pkg = getPackageName();
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        quoteSelector = new QuoteSelector(new AndroidQuoteCatalog(getResources()));
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ImageButton tellButton = findViewById(R.id.tellButton);
-        tellButton.setOnClickListener(v -> showMessage(PREFIX_TELL));
+        tellButton.setOnClickListener(v -> showMessage(QuoteSelector.QuoteKind.TELL));
 
         ImageButton askButton = findViewById(R.id.askButton);
-        askButton.setOnClickListener(v -> showMessage(PREFIX_ASK));
+        askButton.setOnClickListener(v -> showMessage(QuoteSelector.QuoteKind.ASK));
 
         settings.init(sharedPreferences);
 
@@ -66,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 //            btnAsk.setImageResource(R.drawable.unicorn_256_1049947);
 //        }
 
-        showMessage(PREFIX_TELL);
+        showMessage(QuoteSelector.QuoteKind.TELL);
     }
 
     @Override
@@ -109,128 +101,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isMorning(final int hour) {
-        return hour >= 5 && hour <= 11;
-    }
-
-    private boolean isDay(final int hour) {
-        return hour >= 12 && hour <= 17;
-    }
-
-    private boolean isNight(final int hour) {
-        return (hour == 23) || (hour >= 0 && hour <= 3);
-    }
-
-    private Suffix calculateSeasonName(final int month) {
-        switch (month) {
-            case 1:
-            case 2:
-            case 12:
-                return Suffix.WINTER;
-            case 3:
-            case 4:
-            case 5:
-                return Suffix.SPRING;
-            case 6:
-            case 7:
-            case 8:
-                return Suffix.SUMMER;
-            case 9:
-            case 10:
-            case 11:
-                return Suffix.AUTUMN;
-            default:
-                return null;
-        }
-    }
-
-    private List<Suffix> calculateHolidayName(final int day, final int month) {
-        List<Suffix> output = new ArrayList<>();
-        if ((10 == month && 31 == day) || (11 == month && 1 == day)) {
-            Collections.addAll(output, Suffix.HALLOWEEN, Suffix.HALLOWEEN, Suffix.HALLOWEEN);
-        }
-        if (12 == month && day >= 20 && day <= 27) {
-            Collections.addAll(output, Suffix.XMAS, Suffix.XMAS, Suffix.XMAS);
-        }
-        if ((1 == month && day >= 1 && day <= 7) || (12 == month && day > 24)) {
-            Collections.addAll(output, Suffix.NEWYEAR, Suffix.NEWYEAR, Suffix.NEWYEAR);
-        }
-        if (2 == month && day >= 13 && day <= 15) {
-            Collections.addAll(output, Suffix.VALENTINES, Suffix.VALENTINES, Suffix.VALENTINES);
-        }
-        return output;
-    }
-
-    private List<String> getTimeBasedQuotes(final String prefix) {
-        int resId;
-        List<Suffix> suffixes = new ArrayList<>();
-        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-        if (isMorning(hour)) {
-            suffixes.add(Suffix.MORNING);
-        } else if (isDay(hour)) {
-            suffixes.add(Suffix.DAY);
-        } else if (isNight(hour)) {
-            suffixes.add(Suffix.NIGHT);
-        }
-        final Suffix season = calculateSeasonName(month);
-        if (null != season) {
-            suffixes.add(season);
-        }
-
-        suffixes.addAll(calculateHolidayName(day, month));
-
-        List<String> quotes = new ArrayList<>();
-        for (Suffix suffix : suffixes) {
-            resId = getResources().getIdentifier(prefix + "_array_" + suffix.getValue(), "array", pkg);
-            quotes.addAll(Arrays.asList(getResources().getStringArray(resId)));
-        }
-        return quotes;
-    }
-
-    private void showMessage(final String prefix) {
-        int resId = getResources().getIdentifier(prefix + "_array", "array", pkg);
-        List<String> list = new ArrayList<String>(Arrays.asList(getResources().getStringArray(resId)));
-        if ("ol.zvereva@gmail.com".equals(settings.getAccountEmail()) || "andrey.shchurkov@gmail.com".equals(settings.getAccountEmail())) {
-            resId = getResources().getIdentifier(prefix + "_array_personal", "array", pkg);
-            list.addAll(Arrays.asList(getResources().getStringArray(resId)));
-            int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-            int month = Calendar.getInstance().get(Calendar.MONTH);
-            if (day == 8 && month == 1) {
-                resId = getResources().getIdentifier(prefix + "_array_personal_birthday", "array", pkg);
-                list.addAll(Arrays.asList(getResources().getStringArray(resId)));
-            }
-        }
-        list.addAll(getTimeBasedQuotes(prefix));
-        loveText = list.get(new Random().nextInt(list.size()));
+    private void showMessage(final QuoteSelector.QuoteKind kind) {
+        loveText = quoteSelector.select(kind, settings.getAccountEmail(), Calendar.getInstance());
         loveTextView.setText(loveText);
-    }
-
-    public enum Suffix {
-
-        MORNING("morning"),
-        DAY("day"),
-        NIGHT("night"),
-
-        WINTER("winter"),
-        SPRING("spring"),
-        SUMMER("summer"),
-        AUTUMN("autumn"),
-
-        NEWYEAR("newyear"),
-        VALENTINES("valentines"),
-        HALLOWEEN("halloween"),
-        XMAS("xmas");
-
-        private final String value;
-
-        Suffix(String suffix) {
-            this.value = suffix;
-        }
-
-        public String getValue() {
-            return value;
-        }
     }
 }
