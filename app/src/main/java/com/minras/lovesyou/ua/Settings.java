@@ -2,9 +2,7 @@ package com.minras.lovesyou.ua;
 
 import android.content.SharedPreferences;
 
-import java.io.Serializable;
-
-public class Settings implements Serializable {
+public class Settings {
     private String accountEmail = null;
 
     static final private String ACCOUNT_EMAIL_KEY = "accountEmail";

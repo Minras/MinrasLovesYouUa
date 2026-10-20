@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,8 +18,6 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
-import static com.minras.lovesyou.ua.Config.INTENT_DATA_KEY_SETTINGS;
-import static com.minras.lovesyou.ua.Config.REQUEST_CODE_SETTINGS;
 import static com.minras.lovesyou.ua.Config.SHARED_PREFERENCES_NAME;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,15 +25,20 @@ public class MainActivity extends AppCompatActivity {
     private String loveText = "";
     private TextView loveTextView;
 
-    private Settings settings = new Settings();
+    private final Settings settings = new Settings();
     private QuoteSelector quoteSelector;
+    private SharedPreferences sharedPreferences;
+    private ActivityResultLauncher<Intent> settingsLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        settingsLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> settings.init(sharedPreferences));
         quoteSelector = new QuoteSelector(new AndroidQuoteCatalog(getResources()));
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -69,8 +74,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.action_settings) {
             Intent intent = new Intent(this, SettingsActivity.class);
-            intent.putExtra(INTENT_DATA_KEY_SETTINGS, this.settings);
-            startActivityForResult(intent, REQUEST_CODE_SETTINGS);
+            settingsLauncher.launch(intent);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
@@ -88,17 +92,6 @@ public class MainActivity extends AppCompatActivity {
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         loveTextView.setText(loveText);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_SETTINGS && data != null) {
-            Settings receivedSettings = (Settings) data.getSerializableExtra(INTENT_DATA_KEY_SETTINGS);
-            if (receivedSettings != null) {
-                settings = receivedSettings;
-            }
-        }
     }
 
     private void showMessage(final QuoteSelector.QuoteKind kind) {
