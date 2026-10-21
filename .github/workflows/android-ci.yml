@@ -1,0 +1,57 @@
+name: Android CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and verify Android app
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7.0.1
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v6.1.0
+        with:
+          distribution: oracle-openjdk
+          java-version: '17'
+
+      - name: Set up Android SDK tools
+        uses: android-actions/setup-android@v4
+
+      - name: Install Android SDK 35
+        run: sdkmanager "platforms;android-35"
+
+      - name: Set up Gradle and cache dependencies
+        uses: gradle/actions/setup-gradle@v6.4.0
+        with:
+          cache-provider: basic
+
+      - name: Run unit tests, lint, and release builds
+        run: ./gradlew --stacktrace testDebugUnitTest lintDebug assembleDebug bundleRelease
+
+      - name: Upload APK and reports
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: android-ci-artifacts
+          path: |
+            app/build/outputs/apk/debug/*.apk
+            app/build/reports/tests/testDebugUnitTest/
+            app/build/test-results/testDebugUnitTest/
+            app/build/reports/lint-results-debug.html
+          if-no-files-found: warn
+          retention-days: 7
