@@ -76,6 +76,10 @@ public class SettingsTest {
 
         assertEquals(Boolean.FALSE, values.get(Settings.PERSONAL_QUOTES_ENABLED_KEY));
         assertFalse(values.containsKey(Settings.LEGACY_ACCOUNT_EMAIL_KEY));
+
+        Settings reloadedSettings = new Settings();
+        reloadedSettings.init(preferences);
+        assertFalse(reloadedSettings.arePersonalQuotesEnabled());
     }
 
     private SharedPreferences preferences(Map<String, Object> values) {

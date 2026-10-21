@@ -5,4 +5,5 @@
 - Add a personal-quotes setting, migrate recognized saved accounts to it, and remove saved account emails and Google account selection.
 - Refresh the main screen from persisted settings after returning from Settings.
 - Make quote time and date category selection use one local snapshot, with explicit hour and calendar date rules, including morning quotes from 04:00.
+- Replace the arithmetic sample test with behavior-focused quote and settings coverage, including overlapping holiday dates and safe selection from empty or invalid collections.
 - Add GitHub Actions checks for Android builds and automated Gradle and Actions dependency updates.

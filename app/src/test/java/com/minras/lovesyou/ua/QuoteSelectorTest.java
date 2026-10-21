@@ -76,12 +76,17 @@ public class QuoteSelectorTest {
             catalog.set(QuoteSelector.QuoteKind.ASK, category, category.name());
         }
         QuoteSelector selector = selector(catalog);
+        String[] expectedCategoriesByHour = {
+                "NIGHT", "NIGHT", "NIGHT", "NIGHT",
+                "MORNING", "MORNING", "MORNING", "MORNING",
+                "MORNING", "MORNING", "MORNING", "MORNING",
+                "DAY", "DAY", "DAY", "DAY", "DAY", "DAY",
+                "", "", "", "", "", "NIGHT"
+        };
 
         for (int hour = 0; hour < 24; hour++) {
-            QuoteSelector.Category expectedCategory = expectedTimeCategory(hour);
-            String expectedQuote = expectedCategory == null ? "" : expectedCategory.name();
             assertEquals("Unexpected time category at hour " + hour,
-                    expectedQuote,
+                    expectedCategoriesByHour[hour],
                     selector.select(QuoteSelector.QuoteKind.ASK, false,
                             date(Calendar.JUNE, 10, hour)));
         }
@@ -109,12 +114,36 @@ public class QuoteSelectorTest {
             catalog.set(QuoteSelector.QuoteKind.ASK, category, category.name());
         }
         QuoteSelector selector = selector(catalog);
+        String[] expectedCategoriesByMonth = {
+                "WINTER", "WINTER", "SPRING", "SPRING", "SPRING", "SUMMER",
+                "SUMMER", "SUMMER", "AUTUMN", "AUTUMN", "AUTUMN", "WINTER"
+        };
 
         for (int month = Calendar.JANUARY; month <= Calendar.DECEMBER; month++) {
-            QuoteSelector.Category expectedCategory = expectedSeason(month);
-            assertEquals("Unexpected season in month " + (month + 1), expectedCategory.name(),
+            assertEquals("Unexpected season in month " + (month + 1),
+                    expectedCategoriesByMonth[month],
                     selector.select(QuoteSelector.QuoteKind.ASK, false,
                             date(month, 10, 4)));
+        }
+    }
+
+    @Test
+    public void includesBothHolidayCollectionsAcrossTheirOverlappingDates() {
+        FakeCatalog catalog = new FakeCatalog();
+        catalog.set(QuoteSelector.QuoteKind.ASK, QuoteSelector.Category.XMAS, "Christmas quote");
+        catalog.set(QuoteSelector.QuoteKind.ASK, QuoteSelector.Category.NEWYEAR, "New Year quote");
+
+        for (int day : new int[] {25, 26, 27}) {
+            for (int candidateIndex = 0; candidateIndex < 6; candidateIndex++) {
+                String expectedQuote = candidateIndex < 3 ? "Christmas quote" : "New Year quote";
+                QuoteSelector selector = new QuoteSelector(catalog, new FixedRandom(candidateIndex));
+
+                assertEquals("Unexpected holiday quote on December " + day
+                                + " at candidate " + candidateIndex,
+                        expectedQuote,
+                        selector.select(QuoteSelector.QuoteKind.ASK, false,
+                                date(Calendar.DECEMBER, day, 19)));
+            }
         }
     }
 
@@ -150,32 +179,6 @@ public class QuoteSelectorTest {
                 true, date(Calendar.FEBRUARY, 9, 4)));
     }
 
-    private static QuoteSelector.Category expectedTimeCategory(int hour) {
-        if (hour >= 4 && hour <= 11) {
-            return QuoteSelector.Category.MORNING;
-        }
-        if (hour >= 12 && hour <= 17) {
-            return QuoteSelector.Category.DAY;
-        }
-        if (hour == 23 || (hour >= 0 && hour <= 3)) {
-            return QuoteSelector.Category.NIGHT;
-        }
-        return null;
-    }
-
-    private static QuoteSelector.Category expectedSeason(int month) {
-        if (month == Calendar.DECEMBER || month == Calendar.JANUARY || month == Calendar.FEBRUARY) {
-            return QuoteSelector.Category.WINTER;
-        }
-        if (month >= Calendar.MARCH && month <= Calendar.MAY) {
-            return QuoteSelector.Category.SPRING;
-        }
-        if (month >= Calendar.JUNE && month <= Calendar.AUGUST) {
-            return QuoteSelector.Category.SUMMER;
-        }
-        return QuoteSelector.Category.AUTUMN;
-    }
-
     private static void assertDateRange(QuoteSelector.Category category,
                                         int[][] includedDates,
                                         int[][] excludedDates) {
@@ -195,6 +198,22 @@ public class QuoteSelectorTest {
 
     private static QuoteSelector selector(FakeCatalog catalog) {
         return new QuoteSelector(catalog, new Random(0));
+    }
+
+    private static final class FixedRandom extends Random {
+        private final int value;
+
+        FixedRandom(int value) {
+            this.value = value;
+        }
+
+        @Override
+        public int nextInt(int bound) {
+            if (value >= bound) {
+                throw new AssertionError("Requested candidate " + value + " from " + bound);
+            }
+            return value;
+        }
     }
 
     private static Calendar date(int month, int day, int hour) {

@@ -33,3 +33,9 @@ all applicable collections are empty, the selector returns an empty string.
 On the first launch after upgrading, the app migrates a previously saved
 recognized account to the personal-quotes preference and removes the stored
 email.
+
+## Tests
+
+Local JVM unit tests cover hourly and seasonal categories, holiday ranges and
+overlaps, personal quote eligibility, settings persistence, and empty or invalid
+quote collections. Quote-selection rules are tested without an Android device.
