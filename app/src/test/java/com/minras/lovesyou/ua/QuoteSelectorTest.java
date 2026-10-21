@@ -150,7 +150,7 @@ public class QuoteSelectorTest {
                 true, date(Calendar.FEBRUARY, 9, 4)));
     }
 
-    private QuoteSelector.Category expectedTimeCategory(int hour) {
+    private static QuoteSelector.Category expectedTimeCategory(int hour) {
         if (hour >= 4 && hour <= 11) {
             return QuoteSelector.Category.MORNING;
         }
@@ -163,7 +163,7 @@ public class QuoteSelectorTest {
         return null;
     }
 
-    private QuoteSelector.Category expectedSeason(int month) {
+    private static QuoteSelector.Category expectedSeason(int month) {
         if (month == Calendar.DECEMBER || month == Calendar.JANUARY || month == Calendar.FEBRUARY) {
             return QuoteSelector.Category.WINTER;
         }
@@ -176,9 +176,9 @@ public class QuoteSelectorTest {
         return QuoteSelector.Category.AUTUMN;
     }
 
-    private void assertDateRange(QuoteSelector.Category category,
-                                int[][] includedDates,
-                                int[][] excludedDates) {
+    private static void assertDateRange(QuoteSelector.Category category,
+                                        int[][] includedDates,
+                                        int[][] excludedDates) {
         FakeCatalog catalog = new FakeCatalog();
         catalog.set(QuoteSelector.QuoteKind.ASK, category, category.name());
         QuoteSelector selector = selector(catalog);
@@ -193,11 +193,11 @@ public class QuoteSelectorTest {
         }
     }
 
-    private QuoteSelector selector(FakeCatalog catalog) {
+    private static QuoteSelector selector(FakeCatalog catalog) {
         return new QuoteSelector(catalog, new Random(0));
     }
 
-    private Calendar date(int month, int day, int hour) {
+    private static Calendar date(int month, int day, int hour) {
         Calendar date = Calendar.getInstance();
         date.clear();
         date.set(2025, month, day, hour, 0, 0);

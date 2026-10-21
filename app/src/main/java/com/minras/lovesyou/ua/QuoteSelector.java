@@ -54,7 +54,7 @@ final class QuoteSelector {
 
         if (personalQuotesEnabled) {
             addQuotes(candidates, kind, Category.PERSONAL);
-            if (snapshot.month == Calendar.JANUARY && snapshot.dayOfMonth == 8) {
+            if (snapshot.month == Calendar.FEBRUARY && snapshot.dayOfMonth == 8) {
                 addQuotes(candidates, kind, Category.PERSONAL_BIRTHDAY);
             }
         }
@@ -92,7 +92,7 @@ final class QuoteSelector {
         }
     }
 
-    private Category timeCategory(int hour) {
+    private static Category timeCategory(int hour) {
         if (hour >= 4 && hour <= 11) {
             return Category.MORNING;
         }
@@ -105,7 +105,7 @@ final class QuoteSelector {
         return null;
     }
 
-    private Category seasonCategory(int month) {
+    private static Category seasonCategory(int month) {
         switch (month) {
             case 1:
             case 2:
@@ -128,7 +128,7 @@ final class QuoteSelector {
         }
     }
 
-    private List<Category> holidayCategories(int day, int month) {
+    private static List<Category> holidayCategories(int day, int month) {
         List<Category> categories = new ArrayList<>();
         if ((month == 10 && day == 31) || (month == 11 && day == 1)) {
             Collections.addAll(categories,

@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:contentDescription="@string/tell_btn_description"
-            android:src="@drawable/unicorn_128_1049961" />
+            android:src="@drawable/unicorn_tell" />
 
         <TextView
             android:layout_width="match_parent"
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:contentDescription="@string/ask_btn_description"
-            android:src="@drawable/unicorn_128_1049947" />
+            android:src="@drawable/unicorn_ask" />
 
         <TextView
             android:layout_width="match_parent"
