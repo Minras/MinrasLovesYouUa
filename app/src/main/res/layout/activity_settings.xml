@@ -29,12 +29,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_signin"/>
+            android:text="@string/txt_signin" />
+        <TextView
+            android:id="@+id/account_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/account_not_linked" />
         <Button
             android:id="@+id/btn_signin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btn_signin"/>
+            android:text="@string/btn_signin" />
+        <Button
+            android:id="@+id/btn_unlink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_unlink_account"
+            android:visibility="gone" />
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

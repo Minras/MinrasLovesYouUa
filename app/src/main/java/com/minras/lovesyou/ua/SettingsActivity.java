@@ -5,6 +5,10 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
@@ -13,8 +17,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.gms.common.AccountPicker;
 
@@ -27,6 +29,8 @@ public class SettingsActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private Settings settings;
     private ActivityResultLauncher<Intent> accountPickerLauncher;
+    private TextView accountStatus;
+    private Button unlinkButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,11 @@ public class SettingsActivity extends AppCompatActivity {
         Button btnSignin = (Button) findViewById(R.id.btn_signin);
         btnSignin.setOnClickListener(v -> signIn());
 
+        accountStatus = findViewById(R.id.account_status);
+        unlinkButton = findViewById(R.id.btn_unlink);
+        unlinkButton.setOnClickListener(v -> unlinkAccount());
+        renderAccountStatus();
+
     }
 
     /**
@@ -66,21 +75,38 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void handleAccountPickerResult(ActivityResult result) {
-        final String message;
-        final String newEmail;
-        final String errorMessage = "Не вдалося прив'язати аккаунт. Або ви його успішно відв'язали, тоді усе гаразд.";
         Intent data = result.getData();
-        if (result.getResultCode() == RESULT_OK && data != null) {
-            newEmail = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
-            message = newEmail == null
-                    ? errorMessage
-                    : "Аккаунт успішно прив'язано.";
-        } else {
-            newEmail = null;
-            message = errorMessage;
+        if (result.getResultCode() != RESULT_OK) {
+            return;
         }
-        settings.setAccountEmail(newEmail);
+
+        String selectedAccountEmail = data == null
+                ? null
+                : data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+        if (settings.applyAccountPickerResult(true, selectedAccountEmail)) {
+            settings.save(sharedPreferences);
+            renderAccountStatus();
+            Toast.makeText(this, R.string.account_linked, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, R.string.account_picker_missing_result, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void unlinkAccount() {
+        settings.clearAccountEmail();
         settings.save(sharedPreferences);
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+        renderAccountStatus();
+        Toast.makeText(this, R.string.account_unlinked, Toast.LENGTH_LONG).show();
+    }
+
+    private void renderAccountStatus() {
+        String accountEmail = settings.getAccountEmail();
+        if (accountEmail == null) {
+            accountStatus.setText(R.string.account_not_linked);
+            unlinkButton.setVisibility(View.GONE);
+        } else {
+            accountStatus.setText(getString(R.string.account_linked_status, accountEmail));
+            unlinkButton.setVisibility(View.VISIBLE);
+        }
     }
 }

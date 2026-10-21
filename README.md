@@ -20,6 +20,10 @@ Run these commands from the repository root:
 ./gradlew bundleRelease
 ```
 
+## Account settings
+
+Account selection is saved only when the picker returns a non-empty account name. Cancelling the picker or receiving an incomplete result keeps the current account. Use **Unlink account** in Settings to clear the saved account explicitly.
+
 To run the same checks as GitHub Actions in one invocation:
 
 ```sh

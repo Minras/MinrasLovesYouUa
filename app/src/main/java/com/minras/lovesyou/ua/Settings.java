@@ -11,17 +11,44 @@ public class Settings {
         return accountEmail;
     }
 
-    public void setAccountEmail(String accountEmail) {
-        this.accountEmail = accountEmail;
+    public boolean applyAccountPickerResult(boolean successful, String selectedAccountEmail) {
+        if (!successful) {
+            return false;
+        }
+
+        String normalizedEmail = normalizeAccountEmail(selectedAccountEmail);
+        if (normalizedEmail == null) {
+            return false;
+        }
+
+        accountEmail = normalizedEmail;
+        return true;
+    }
+
+    public void clearAccountEmail() {
+        accountEmail = null;
     }
 
     public void init(SharedPreferences sharedPreferences) {
-        setAccountEmail(sharedPreferences.getString(ACCOUNT_EMAIL_KEY, null));
+        accountEmail = normalizeAccountEmail(sharedPreferences.getString(ACCOUNT_EMAIL_KEY, null));
     }
 
     public void save(SharedPreferences sharedPreferences) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(ACCOUNT_EMAIL_KEY, accountEmail);
+        if (accountEmail == null) {
+            editor.remove(ACCOUNT_EMAIL_KEY);
+        } else {
+            editor.putString(ACCOUNT_EMAIL_KEY, accountEmail);
+        }
         editor.apply();
+    }
+
+    private String normalizeAccountEmail(String email) {
+        if (email == null) {
+            return null;
+        }
+
+        String normalizedEmail = email.trim();
+        return normalizedEmail.isEmpty() ? null : normalizedEmail;
     }
 }

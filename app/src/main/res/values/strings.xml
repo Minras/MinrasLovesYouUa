@@ -7,6 +7,12 @@
     <string name="title_activity_settings">Settings</string>
     <string name="btn_signin">Sign In</string>
     <string name="txt_signin">Тут можна прив\'язати свій аккаунт. Рекомендую, якщо у вас є особисті цитати:</string>
+    <string name="account_linked_status">Підключений аккаунт: %1$s</string>
+    <string name="account_not_linked">Аккаунт не підключений.</string>
+    <string name="btn_unlink_account">Відв\'язати аккаунт</string>
+    <string name="account_linked">Аккаунт успішно прив\'язано.</string>
+    <string name="account_unlinked">Аккаунт відв\'язано.</string>
+    <string name="account_picker_missing_result">Не вдалося отримати аккаунт. Збережені налаштування не змінено.</string>
 
     <string name="tell_btn_title">Скажи мені!</string>
     <string name="ask_btn_title">Ти мене кохаєш?</string>
