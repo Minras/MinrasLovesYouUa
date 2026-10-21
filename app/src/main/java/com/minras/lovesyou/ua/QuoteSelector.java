@@ -47,30 +47,30 @@ final class QuoteSelector {
         this.random = random;
     }
 
-    String select(QuoteKind kind, String accountEmail, Calendar date) {
+    String select(QuoteKind kind, String accountEmail, Calendar localDateTime) {
+        LocalDateTimeSnapshot snapshot = new LocalDateTimeSnapshot(localDateTime);
         List<String> candidates = new ArrayList<>();
         addQuotes(candidates, kind, Category.GENERAL);
 
         if (isPersonalAccount(accountEmail)) {
             addQuotes(candidates, kind, Category.PERSONAL);
-            if (date.get(Calendar.MONTH) == Calendar.FEBRUARY
-                    && date.get(Calendar.DAY_OF_MONTH) == 8) {
+            if (snapshot.month == Calendar.JANUARY && snapshot.dayOfMonth == 8) {
                 addQuotes(candidates, kind, Category.PERSONAL_BIRTHDAY);
             }
         }
 
-        Category timeCategory = timeCategory(date.get(Calendar.HOUR_OF_DAY));
+        Category timeCategory = timeCategory(snapshot.hourOfDay);
         if (timeCategory != null) {
             addQuotes(candidates, kind, timeCategory);
         }
 
-        Category season = seasonCategory(date.get(Calendar.MONTH) + 1);
+        Category season = seasonCategory(snapshot.month + 1);
         if (season != null) {
             addQuotes(candidates, kind, season);
         }
 
         for (Category holiday : holidayCategories(
-                date.get(Calendar.DAY_OF_MONTH), date.get(Calendar.MONTH) + 1)) {
+                snapshot.dayOfMonth, snapshot.month + 1)) {
             addQuotes(candidates, kind, holiday);
         }
 
@@ -98,7 +98,7 @@ final class QuoteSelector {
     }
 
     private Category timeCategory(int hour) {
-        if (hour >= 5 && hour <= 11) {
+        if (hour >= 4 && hour <= 11) {
             return Category.MORNING;
         }
         if (hour >= 12 && hour <= 17) {
@@ -151,5 +151,19 @@ final class QuoteSelector {
                     Category.VALENTINES, Category.VALENTINES, Category.VALENTINES);
         }
         return categories;
+    }
+
+    /** Captures all calendar fields used by category selection from the same local time. */
+    private static final class LocalDateTimeSnapshot {
+        private final int month;
+        private final int dayOfMonth;
+        private final int hourOfDay;
+
+        LocalDateTimeSnapshot(Calendar localDateTime) {
+            Calendar snapshot = (Calendar) localDateTime.clone();
+            month = snapshot.get(Calendar.MONTH);
+            dayOfMonth = snapshot.get(Calendar.DAY_OF_MONTH);
+            hourOfDay = snapshot.get(Calendar.HOUR_OF_DAY);
+        }
     }
 }

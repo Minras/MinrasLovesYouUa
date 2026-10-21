@@ -95,7 +95,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showMessage(final QuoteSelector.QuoteKind kind) {
-        loveText = quoteSelector.select(kind, settings.getAccountEmail(), Calendar.getInstance());
+        Calendar localDateTime = Calendar.getInstance();
+        loveText = quoteSelector.select(kind, settings.getAccountEmail(), localDateTime);
         loveTextView.setText(loveText);
     }
 }
