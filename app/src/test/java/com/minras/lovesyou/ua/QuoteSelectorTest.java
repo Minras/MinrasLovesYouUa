@@ -19,9 +19,9 @@ public class QuoteSelectorTest {
         QuoteSelector selector = selector(catalog);
 
         assertEquals("ask quote", selector.select(
-                QuoteSelector.QuoteKind.ASK, null, date(Calendar.JUNE, 10, 19)));
+                QuoteSelector.QuoteKind.ASK, false, date(Calendar.JUNE, 10, 19)));
         assertEquals("tell quote", selector.select(
-                QuoteSelector.QuoteKind.TELL, null, date(Calendar.JUNE, 10, 19)));
+                QuoteSelector.QuoteKind.TELL, false, date(Calendar.JUNE, 10, 19)));
     }
 
     @Test
@@ -32,7 +32,7 @@ public class QuoteSelectorTest {
         QuoteSelector selector = selector(catalog);
 
         assertEquals("general quote", selector.select(
-                QuoteSelector.QuoteKind.ASK, null, date(Calendar.JANUARY, 10, 19)));
+                QuoteSelector.QuoteKind.ASK, false, date(Calendar.JANUARY, 10, 19)));
     }
 
     @Test
@@ -40,18 +40,28 @@ public class QuoteSelectorTest {
         QuoteSelector selector = selector(new FakeCatalog());
 
         assertEquals("", selector.select(
-                QuoteSelector.QuoteKind.ASK, null, date(Calendar.JUNE, 10, 19)));
+                QuoteSelector.QuoteKind.ASK, false, date(Calendar.JUNE, 10, 19)));
     }
 
     @Test
-    public void includesPersonalQuotesForRecognizedAccount() {
+    public void includesPersonalQuotesWhenPreferenceIsEnabled() {
         FakeCatalog catalog = new FakeCatalog();
         catalog.set(QuoteSelector.QuoteKind.TELL, QuoteSelector.Category.PERSONAL, "personal quote");
         QuoteSelector selector = selector(catalog);
 
         assertEquals("personal quote", selector.select(
                 QuoteSelector.QuoteKind.TELL,
-                "andrey.shchurkov@gmail.com",
+                true,
+                date(Calendar.JUNE, 10, 19)));
+    }
+
+    @Test
+    public void excludesPersonalQuotesWhenPreferenceIsDisabled() {
+        FakeCatalog catalog = new FakeCatalog();
+        catalog.set(QuoteSelector.QuoteKind.TELL, QuoteSelector.Category.PERSONAL, "personal quote");
+        QuoteSelector selector = selector(catalog);
+
+        assertEquals("", selector.select(QuoteSelector.QuoteKind.TELL, false,
                 date(Calendar.JUNE, 10, 19)));
     }
 
@@ -72,7 +82,7 @@ public class QuoteSelectorTest {
             String expectedQuote = expectedCategory == null ? "" : expectedCategory.name();
             assertEquals("Unexpected time category at hour " + hour,
                     expectedQuote,
-                    selector.select(QuoteSelector.QuoteKind.ASK, null,
+                    selector.select(QuoteSelector.QuoteKind.ASK, false,
                             date(Calendar.JUNE, 10, hour)));
         }
     }
@@ -83,7 +93,7 @@ public class QuoteSelectorTest {
         catalog.set(QuoteSelector.QuoteKind.ASK, QuoteSelector.Category.MORNING, "morning quote");
         QuoteSelector selector = selector(catalog);
 
-        assertEquals("morning quote", selector.select(QuoteSelector.QuoteKind.ASK, null,
+        assertEquals("morning quote", selector.select(QuoteSelector.QuoteKind.ASK, false,
                 date(Calendar.JUNE, 10, 4)));
     }
 
@@ -103,7 +113,7 @@ public class QuoteSelectorTest {
         for (int month = Calendar.JANUARY; month <= Calendar.DECEMBER; month++) {
             QuoteSelector.Category expectedCategory = expectedSeason(month);
             assertEquals("Unexpected season in month " + (month + 1), expectedCategory.name(),
-                    selector.select(QuoteSelector.QuoteKind.ASK, null,
+                    selector.select(QuoteSelector.QuoteKind.ASK, false,
                             date(month, 10, 4)));
         }
     }
@@ -133,11 +143,11 @@ public class QuoteSelectorTest {
         QuoteSelector selector = selector(catalog);
 
         assertEquals("", selector.select(QuoteSelector.QuoteKind.ASK,
-                "andrey.shchurkov@gmail.com", date(Calendar.FEBRUARY, 7, 4)));
+                true, date(Calendar.FEBRUARY, 7, 4)));
         assertEquals("birthday quote", selector.select(QuoteSelector.QuoteKind.ASK,
-                "andrey.shchurkov@gmail.com", date(Calendar.FEBRUARY, 8, 4)));
+                true, date(Calendar.FEBRUARY, 8, 4)));
         assertEquals("", selector.select(QuoteSelector.QuoteKind.ASK,
-                "andrey.shchurkov@gmail.com", date(Calendar.FEBRUARY, 9, 4)));
+                true, date(Calendar.FEBRUARY, 9, 4)));
     }
 
     private QuoteSelector.Category expectedTimeCategory(int hour) {
@@ -174,11 +184,11 @@ public class QuoteSelectorTest {
         QuoteSelector selector = selector(catalog);
 
         for (int[] date : includedDates) {
-            assertEquals(category.name(), selector.select(QuoteSelector.QuoteKind.ASK, null,
+            assertEquals(category.name(), selector.select(QuoteSelector.QuoteKind.ASK, false,
                     date(date[0], date[1], 4)));
         }
         for (int[] date : excludedDates) {
-            assertEquals("", selector.select(QuoteSelector.QuoteKind.ASK, null,
+            assertEquals("", selector.select(QuoteSelector.QuoteKind.ASK, false,
                     date(date[0], date[1], 4)));
         }
     }

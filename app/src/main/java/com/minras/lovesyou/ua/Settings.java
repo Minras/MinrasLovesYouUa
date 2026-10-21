@@ -3,52 +3,48 @@ package com.minras.lovesyou.ua;
 import android.content.SharedPreferences;
 
 public class Settings {
-    private String accountEmail = null;
+    static final String PERSONAL_QUOTES_ENABLED_KEY = "personalQuotesEnabled";
+    static final String LEGACY_ACCOUNT_EMAIL_KEY = "accountEmail";
 
-    static final private String ACCOUNT_EMAIL_KEY = "accountEmail";
+    private boolean personalQuotesEnabled;
 
-    public String getAccountEmail() {
-        return accountEmail;
+    public boolean arePersonalQuotesEnabled() {
+        return personalQuotesEnabled;
     }
 
-    public boolean applyAccountPickerResult(boolean successful, String selectedAccountEmail) {
-        if (!successful) {
-            return false;
-        }
-
-        String normalizedEmail = normalizeAccountEmail(selectedAccountEmail);
-        if (normalizedEmail == null) {
-            return false;
-        }
-
-        accountEmail = normalizedEmail;
-        return true;
-    }
-
-    public void clearAccountEmail() {
-        accountEmail = null;
+    public void setPersonalQuotesEnabled(boolean enabled) {
+        personalQuotesEnabled = enabled;
     }
 
     public void init(SharedPreferences sharedPreferences) {
-        accountEmail = normalizeAccountEmail(sharedPreferences.getString(ACCOUNT_EMAIL_KEY, null));
+        boolean hasSavedPreference = sharedPreferences.contains(PERSONAL_QUOTES_ENABLED_KEY);
+        String legacyAccountEmail = sharedPreferences.getString(LEGACY_ACCOUNT_EMAIL_KEY, null);
+        personalQuotesEnabled = hasSavedPreference
+                ? sharedPreferences.getBoolean(PERSONAL_QUOTES_ENABLED_KEY, false)
+                : isRecognizedPersonalAccount(legacyAccountEmail);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if (!hasSavedPreference) {
+            editor.putBoolean(PERSONAL_QUOTES_ENABLED_KEY, personalQuotesEnabled);
+        }
+        editor.remove(LEGACY_ACCOUNT_EMAIL_KEY);
+        editor.apply();
     }
 
     public void save(SharedPreferences sharedPreferences) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        if (accountEmail == null) {
-            editor.remove(ACCOUNT_EMAIL_KEY);
-        } else {
-            editor.putString(ACCOUNT_EMAIL_KEY, accountEmail);
-        }
+        editor.putBoolean(PERSONAL_QUOTES_ENABLED_KEY, personalQuotesEnabled);
+        editor.remove(LEGACY_ACCOUNT_EMAIL_KEY);
         editor.apply();
     }
 
-    private String normalizeAccountEmail(String email) {
+    private static boolean isRecognizedPersonalAccount(String email) {
         if (email == null) {
-            return null;
+            return false;
         }
 
         String normalizedEmail = email.trim();
-        return normalizedEmail.isEmpty() ? null : normalizedEmail;
+        return "ol.zvereva@gmail.com".equals(normalizedEmail)
+                || "andrey.shchurkov@gmail.com".equals(normalizedEmail);
     }
 }

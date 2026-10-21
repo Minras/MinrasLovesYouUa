@@ -17,7 +17,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.Calendar;
-import java.util.Objects;
 
 import static com.minras.lovesyou.ua.Config.SHARED_PREFERENCES_NAME;
 
@@ -41,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
         settingsLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-                    String previousAccountEmail = settings.getAccountEmail();
+                    boolean previousPersonalQuotesEnabled = settings.arePersonalQuotesEnabled();
                     settings.init(sharedPreferences);
-                    if (!Objects.equals(previousAccountEmail, settings.getAccountEmail())) {
+                    if (previousPersonalQuotesEnabled != settings.arePersonalQuotesEnabled()) {
                         showMessage(currentQuoteKind);
                     }
                 });
@@ -105,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
     private void showMessage(final QuoteSelector.QuoteKind kind) {
         currentQuoteKind = kind;
         Calendar localDateTime = Calendar.getInstance();
-        loveText = quoteSelector.select(kind, settings.getAccountEmail(), localDateTime);
+        loveText = quoteSelector.select(kind, settings.arePersonalQuotesEnabled(), localDateTime);
         loveTextView.setText(loveText);
     }
 }

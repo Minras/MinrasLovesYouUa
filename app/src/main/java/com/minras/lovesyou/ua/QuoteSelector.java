@@ -47,12 +47,12 @@ final class QuoteSelector {
         this.random = random;
     }
 
-    String select(QuoteKind kind, String accountEmail, Calendar localDateTime) {
+    String select(QuoteKind kind, boolean personalQuotesEnabled, Calendar localDateTime) {
         LocalDateTimeSnapshot snapshot = new LocalDateTimeSnapshot(localDateTime);
         List<String> candidates = new ArrayList<>();
         addQuotes(candidates, kind, Category.GENERAL);
 
-        if (isPersonalAccount(accountEmail)) {
+        if (personalQuotesEnabled) {
             addQuotes(candidates, kind, Category.PERSONAL);
             if (snapshot.month == Calendar.JANUARY && snapshot.dayOfMonth == 8) {
                 addQuotes(candidates, kind, Category.PERSONAL_BIRTHDAY);
@@ -90,11 +90,6 @@ final class QuoteSelector {
                 candidates.add(quote);
             }
         }
-    }
-
-    private boolean isPersonalAccount(String accountEmail) {
-        return "ol.zvereva@gmail.com".equals(accountEmail)
-                || "andrey.shchurkov@gmail.com".equals(accountEmail);
     }
 
     private Category timeCategory(int hour) {

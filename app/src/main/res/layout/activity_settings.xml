@@ -26,26 +26,15 @@
         android:paddingTop="?attr/actionBarSize"
         style="@style/layoutContent"
         android:orientation="vertical">
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/personal_quotes_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/personal_quotes_enabled" />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/txt_signin" />
-        <TextView
-            android:id="@+id/account_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/account_not_linked" />
-        <Button
-            android:id="@+id/btn_signin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_signin" />
-        <Button
-            android:id="@+id/btn_unlink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_unlink_account"
-            android:visibility="gone" />
+            android:text="@string/personal_quotes_description" />
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
