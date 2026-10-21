@@ -21,24 +21,13 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <androidx.appcompat.widget.AppCompatTextView
         style="@style/layoutContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="?attr/actionBarSize">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="Copyright Unicorn"
-            android:src="@drawable/unicorn_128_1049985" />
-
-        <TextView
-            android:id="@+id/text_copyright"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:autoLink="web"
-            android:text="" />
-    </LinearLayout>
+        android:paddingTop="?attr/actionBarSize"
+        android:autoLink="web"
+        app:drawableStartCompat="@drawable/unicorn_copyright"
+        android:drawablePadding="16dp"
+        android:text="@string/copyright_credits" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

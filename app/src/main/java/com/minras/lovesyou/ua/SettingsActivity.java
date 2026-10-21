@@ -24,12 +24,14 @@ public class SettingsActivity extends AppCompatActivity {
         settings = new Settings();
         settings.init(sharedPreferences);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         // Get a support ActionBar corresponding to this toolbar
-        ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         SwitchCompat personalQuotesSwitch = findViewById(R.id.personal_quotes_switch);
         personalQuotesSwitch.setChecked(settings.arePersonalQuotesEnabled());

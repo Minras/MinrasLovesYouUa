@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Поговоримо про кохання</string>
 
-    <string name="action_copyright">Copyright</string>
-    <string name="title_activity_copyright">Copyright</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_settings">Settings</string>
+    <string name="action_copyright">Подяки</string>
+    <string name="title_activity_copyright">Авторство</string>
+    <string name="action_settings">Налаштування</string>
+    <string name="title_activity_settings">Налаштування</string>
     <string name="personal_quotes_enabled">Особисті цитати</string>
     <string name="personal_quotes_description">Увімкніть, щоб додати особисті цитати до вибору.</string>
 
@@ -19,7 +19,8 @@
     -->
     <string name="tell_btn_title">Скажи мені!</string>
     <string name="ask_btn_title">Ти мене кохаєш?</string>
-    <string name="love_text_frame_descr">Cloud wrapper</string>
-    <string name="tell_btn_description">A button making the unicorn say what he has to say</string>
-    <string name="ask_btn_description">A button making the unicorn answer the question</string>
+    <string name="love_text_frame_descr">Хмаринка для тексту</string>
+    <string name="tell_btn_description">Кнопка, що просить єдинорога сказати щось</string>
+    <string name="ask_btn_description">Кнопка, що просить єдинорога відповісти на запитання</string>
+    <string name="copyright_credits">За іконки з єдинорогами та хмаринку подяка Freepik та Vecteezy з www.freepik.com. Щиро вдячний, хлопці!</string>
 </resources>

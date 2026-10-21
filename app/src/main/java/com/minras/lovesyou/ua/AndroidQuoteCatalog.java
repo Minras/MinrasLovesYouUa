@@ -20,7 +20,7 @@ final class AndroidQuoteCatalog implements QuoteSelector.QuoteCatalog {
         return resources.getStringArray(resourceId);
     }
 
-    private int resourceId(QuoteSelector.QuoteKind kind, QuoteSelector.Category category) {
+    private static int resourceId(QuoteSelector.QuoteKind kind, QuoteSelector.Category category) {
         switch (kind) {
             case ASK:
                 switch (category) {

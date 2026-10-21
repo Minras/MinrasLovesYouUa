@@ -1,19 +1,19 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion project.minrasCompileSdkVersion.toInteger()
+    compileSdk = project.minrasCompileSdkVersion.toInteger()
     defaultConfig {
-        applicationId "com.minras.lovesyou.ua"
-        minSdkVersion project.minrasMinSdkVersion.toInteger()
-        targetSdkVersion project.minrasTargetSdkVersion.toInteger()
-        versionCode project.appVersionCode.toInteger()
-        versionName project.appVersionName
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId = "com.minras.lovesyou.ua"
+        minSdk = project.minrasMinSdkVersion.toInteger()
+        targetSdk = project.minrasTargetSdkVersion.toInteger()
+        versionCode = project.appVersionCode.toInteger()
+        versionName = project.appVersionName
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
