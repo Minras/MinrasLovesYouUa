@@ -41,7 +41,11 @@ jobs:
           cache-provider: basic
 
       - name: Run unit tests, lint, and release builds
-        run: ./gradlew --stacktrace testDebugUnitTest lintDebug assembleDebug bundleRelease
+        env:
+          JAVA_TOOL_OPTIONS: -XX:-UseContainerSupport
+        run: |
+          java -version
+          ./gradlew --stacktrace testDebugUnitTest lintDebug assembleDebug bundleRelease
 
       - name: Upload APK and reports
         if: always()
