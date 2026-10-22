@@ -39,6 +39,8 @@
             android:id="@+id/personal_quotes_switch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:thumbTint="@color/personal_quotes_switch_thumb_tint"
+            app:trackTint="@color/personal_quotes_switch_track_tint"
             android:text="@string/personal_quotes_enabled" />
         <TextView
             style="@style/settingsContentItem"
