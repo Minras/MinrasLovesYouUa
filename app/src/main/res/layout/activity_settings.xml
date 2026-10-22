@@ -31,46 +31,67 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="?attr/actionBarSize"
-        style="@style/layoutContent"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical">
         <androidx.appcompat.widget.SwitchCompat
+            style="@style/settingsContentItem"
             android:id="@+id/personal_quotes_switch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/personal_quotes_enabled" />
         <TextView
+            style="@style/settingsContentItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/personal_quotes_description" />
 
         <TextView
+            style="@style/settingsContentItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/birthday_setting_title"
             android:textStyle="bold" />
         <TextView
+            style="@style/settingsContentItem"
             android:id="@+id/birthday_summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/birthday_not_set" />
         <TextView
+            style="@style/settingsContentItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@string/birthday_setting_description" />
-        <Button
-            android:id="@+id/birthday_picker_button"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/birthday_set_button" />
-        <Button
-            android:id="@+id/birthday_clear_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/birthday_clear_button" />
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/birthday_picker_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/birthday_set_button"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.7" />
+
+            <Button
+                android:id="@+id/birthday_clear_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/birthday_clear_button"
+                app:layout_constraintTop_toBottomOf="@id/birthday_picker_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.7" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
