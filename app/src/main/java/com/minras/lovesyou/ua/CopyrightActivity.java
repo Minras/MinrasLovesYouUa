@@ -14,6 +14,7 @@ public class CopyrightActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_copyright);
+        SystemBarInsets.applyTopInset(findViewById(R.id.copyrightCoordinatorLayout));
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

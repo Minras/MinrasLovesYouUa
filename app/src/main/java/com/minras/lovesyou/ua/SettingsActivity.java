@@ -25,6 +25,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        SystemBarInsets.applyTopInset(findViewById(R.id.settingsCoordinatorLayout));
 
         sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
         settings = new Settings();
