@@ -2,6 +2,6 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/unicorn_512_1049985</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/unicorn_256_1049985</item>
     </style>
 </resources>
