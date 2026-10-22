@@ -48,13 +48,18 @@ final class QuoteSelector {
     }
 
     String select(QuoteKind kind, boolean personalQuotesEnabled, Calendar localDateTime) {
+        return select(kind, personalQuotesEnabled, null, localDateTime);
+    }
+
+    String select(QuoteKind kind, boolean personalQuotesEnabled, Birthday birthday,
+                  Calendar localDateTime) {
         LocalDateTimeSnapshot snapshot = new LocalDateTimeSnapshot(localDateTime);
         List<String> candidates = new ArrayList<>();
         addQuotes(candidates, kind, Category.GENERAL);
 
         if (personalQuotesEnabled) {
             addQuotes(candidates, kind, Category.PERSONAL);
-            if (snapshot.month == Calendar.FEBRUARY && snapshot.dayOfMonth == 8) {
+            if (birthday != null && birthday.matches(snapshot.month + 1, snapshot.dayOfMonth)) {
                 addQuotes(candidates, kind, Category.PERSONAL_BIRTHDAY);
             }
         }

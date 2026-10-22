@@ -35,16 +35,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SystemBarInsets.applyTopInset(findViewById(R.id.mainCoordinatorLayout));
 
         sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
         settingsLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-                    boolean previousPersonalQuotesEnabled = settings.arePersonalQuotesEnabled();
                     settings.init(sharedPreferences);
-                    if (previousPersonalQuotesEnabled != settings.arePersonalQuotesEnabled()) {
-                        showMessage(currentQuoteKind);
-                    }
+                    showMessage(currentQuoteKind);
                 });
         quoteSelector = new QuoteSelector(new AndroidQuoteCatalog(getResources()));
 
@@ -95,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
     private void showMessage(final QuoteSelector.QuoteKind kind) {
         currentQuoteKind = kind;
         Calendar localDateTime = Calendar.getInstance();
-        loveText = quoteSelector.select(kind, settings.arePersonalQuotesEnabled(), localDateTime);
+        loveText = quoteSelector.select(kind, settings.arePersonalQuotesEnabled(),
+                settings.getBirthday(), localDateTime);
         loveTextView.setText(loveText);
     }
 }

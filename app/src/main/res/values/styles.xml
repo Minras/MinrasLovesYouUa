@@ -13,6 +13,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="BirthdayDatePickerTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:colorAccent">@color/colorPrimary</item>
+    </style>
+
     <style name="tellButtonLayout">
         <item name="android:layout_marginTop">30dp</item>
         <item name="android:layout_marginEnd">10dp</item>
@@ -32,6 +37,11 @@
         <item name="android:layout_marginRight">20dp</item>
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:layout_marginLeft">10dp</item>
+    </style>
+
+    <style name="settingsContentItem">
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
     </style>
 
     <style name="loveTextView">

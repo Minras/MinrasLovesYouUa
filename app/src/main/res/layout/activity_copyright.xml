@@ -5,7 +5,13 @@
     android:id="@+id/copyrightCoordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/colorPrimaryDark"
+    tools:context=".CopyrightActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -21,13 +27,45 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        style="@style/layoutContent"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="?attr/actionBarSize"
-        android:autoLink="web"
-        app:drawableStartCompat="@drawable/unicorn_copyright"
-        android:drawablePadding="16dp"
-        android:text="@string/copyright_credits" />
+        android:layout_height="match_parent"
+        android:paddingTop="?attr/actionBarSize">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/copyright_credits_scroll"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:id="@+id/copyright_content_frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/copyright_credits"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autoLink="web"
+                    android:text="@string/copyright_credits" />
+
+                <ImageView
+                    android:id="@+id/copyright_unicorn"
+                    android:layout_gravity="top|start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/unicorn_copyright" />
+            </FrameLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
