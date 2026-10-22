@@ -165,18 +165,36 @@ public class QuoteSelectorTest {
     }
 
     @Test
-    public void personalBirthdayQuotesApplyOnlyOnFebruaryEighth() {
+    public void birthdayQuotesRequireEnabledPersonalQuotesAndMatchingSavedBirthday() {
         FakeCatalog catalog = new FakeCatalog();
         catalog.set(QuoteSelector.QuoteKind.ASK,
                 QuoteSelector.Category.PERSONAL_BIRTHDAY, "birthday quote");
         QuoteSelector selector = selector(catalog);
 
         assertEquals("", selector.select(QuoteSelector.QuoteKind.ASK,
-                true, date(Calendar.FEBRUARY, 7, 4)));
-        assertEquals("birthday quote", selector.select(QuoteSelector.QuoteKind.ASK,
                 true, date(Calendar.FEBRUARY, 8, 4)));
         assertEquals("", selector.select(QuoteSelector.QuoteKind.ASK,
-                true, date(Calendar.FEBRUARY, 9, 4)));
+                false, new Birthday(Calendar.FEBRUARY + 1, 8), date(Calendar.FEBRUARY, 8, 4)));
+        assertEquals("birthday quote", selector.select(QuoteSelector.QuoteKind.ASK,
+                true, new Birthday(Calendar.FEBRUARY + 1, 8), date(Calendar.FEBRUARY, 8, 4)));
+        assertEquals("", selector.select(QuoteSelector.QuoteKind.ASK,
+                true, new Birthday(Calendar.FEBRUARY + 1, 8), date(Calendar.FEBRUARY, 9, 4)));
+    }
+
+    @Test
+    public void februaryTwentyNinthBirthdayMatchesOnlyOnLeapDay() {
+        FakeCatalog catalog = new FakeCatalog();
+        catalog.set(QuoteSelector.QuoteKind.ASK,
+                QuoteSelector.Category.PERSONAL_BIRTHDAY, "birthday quote");
+        QuoteSelector selector = selector(catalog);
+        Birthday birthday = new Birthday(Calendar.FEBRUARY + 1, 29);
+
+        assertEquals("birthday quote", selector.select(QuoteSelector.QuoteKind.ASK,
+                true, birthday, date(2024, Calendar.FEBRUARY, 29, 4)));
+        assertEquals("", selector.select(QuoteSelector.QuoteKind.ASK,
+                true, birthday, date(2025, Calendar.FEBRUARY, 28, 4)));
+        assertEquals("", selector.select(QuoteSelector.QuoteKind.ASK,
+                true, birthday, date(2025, Calendar.MARCH, 1, 4)));
     }
 
     private static void assertDateRange(QuoteSelector.Category category,
@@ -217,9 +235,13 @@ public class QuoteSelectorTest {
     }
 
     private static Calendar date(int month, int day, int hour) {
+        return date(2025, month, day, hour);
+    }
+
+    private static Calendar date(int year, int month, int day, int hour) {
         Calendar date = Calendar.getInstance();
         date.clear();
-        date.set(2025, month, day, hour, 0, 0);
+        date.set(year, month, day, hour, 0, 0);
         return date;
     }
 

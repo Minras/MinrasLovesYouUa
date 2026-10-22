@@ -7,16 +7,15 @@
     <string name="title_activity_settings">Налаштування</string>
     <string name="personal_quotes_enabled">Особисті цитати</string>
     <string name="personal_quotes_description">Увімкніть, щоб додати особисті цитати до вибору.</string>
+    <string name="birthday_setting_title">День народження</string>
+    <string name="birthday_not_set">Не встановлено</string>
+    <string name="birthday_summary_set">День народження: %1$02d.%2$02d</string>
+    <string name="birthday_setting_description">Виберіть день і місяць. Рік не зберігається. Цитати до дня народження з’являються, якщо особисті цитати увімкнено.</string>
+    <string name="birthday_set_button">Вибрати день народження</string>
+    <string name="birthday_change_button">Змінити дату</string>
+    <string name="birthday_clear_button">Очистити дату</string>
+    <string name="birthday_picker_title">Виберіть день народження</string>
 
-    <!--
-    <string name="txt_signin">Тут можна прив\'язати свій аккаунт. Рекомендую, якщо у вас є особисті цитати:</string>
-    <string name="account_linked_status">Підключений аккаунт: %1$s</string>
-    <string name="account_not_linked">Аккаунт не підключений.</string>
-    <string name="btn_unlink_account">Відв\'язати аккаунт</string>
-    <string name="account_linked">Аккаунт успішно прив\'язано.</string>
-    <string name="account_unlinked">Аккаунт відв\'язано.</string>
-    <string name="account_picker_missing_result">Не вдалося отримати аккаунт. Збережені налаштування не змінено.</string>
-    -->
     <string name="tell_btn_title">Скажи мені!</string>
     <string name="ask_btn_title">Ти мене кохаєш?</string>
     <string name="love_text_frame_descr">Хмаринка для тексту</string>

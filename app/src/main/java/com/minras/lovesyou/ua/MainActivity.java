@@ -40,11 +40,8 @@ public class MainActivity extends AppCompatActivity {
         settingsLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-                    boolean previousPersonalQuotesEnabled = settings.arePersonalQuotesEnabled();
                     settings.init(sharedPreferences);
-                    if (previousPersonalQuotesEnabled != settings.arePersonalQuotesEnabled()) {
-                        showMessage(currentQuoteKind);
-                    }
+                    showMessage(currentQuoteKind);
                 });
         quoteSelector = new QuoteSelector(new AndroidQuoteCatalog(getResources()));
 
@@ -95,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
     private void showMessage(final QuoteSelector.QuoteKind kind) {
         currentQuoteKind = kind;
         Calendar localDateTime = Calendar.getInstance();
-        loveText = quoteSelector.select(kind, settings.arePersonalQuotesEnabled(), localDateTime);
+        loveText = quoteSelector.select(kind, settings.arePersonalQuotesEnabled(),
+                settings.getBirthday(), localDateTime);
         loveTextView.setText(loveText);
     }
 }

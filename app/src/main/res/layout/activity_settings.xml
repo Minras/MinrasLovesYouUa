@@ -35,6 +35,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/personal_quotes_description" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/birthday_setting_title"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/birthday_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/birthday_not_set" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/birthday_setting_description" />
+        <Button
+            android:id="@+id/birthday_picker_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/birthday_set_button" />
+        <Button
+            android:id="@+id/birthday_clear_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/birthday_clear_button" />
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
