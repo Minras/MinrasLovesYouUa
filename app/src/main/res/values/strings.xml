@@ -10,11 +10,11 @@
     <string name="birthday_setting_title">День народження</string>
     <string name="birthday_not_set">Не встановлено</string>
     <string name="birthday_summary_set">День народження: %1$02d.%2$02d</string>
-    <string name="birthday_setting_description">Виберіть день і місяць. Рік не зберігається. Цитати до дня народження з’являються, якщо особисті цитати увімкнено.</string>
-    <string name="birthday_set_button">Вибрати день народження</string>
+    <string name="birthday_setting_description">Оберіть день і місяць. Рік не зберігається. Цитати до дня народження з’являться, якщо особисті цитати увімкнено.</string>
+    <string name="birthday_set_button">Обрати день народження</string>
     <string name="birthday_change_button">Змінити дату</string>
-    <string name="birthday_clear_button">Очистити дату</string>
-    <string name="birthday_picker_title">Виберіть день народження</string>
+    <string name="birthday_clear_button">Видалити дату</string>
+    <string name="birthday_picker_title">Оберіть собі день народження</string>
 
     <string name="tell_btn_title">Скажи мені!</string>
     <string name="ask_btn_title">Ти мене кохаєш?</string>

@@ -3,6 +3,7 @@ package com.minras.lovesyou.ua;
 import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
@@ -72,7 +73,9 @@ public class SettingsActivity extends AppCompatActivity {
             }
         }
 
-        DatePickerDialog dialog = new DatePickerDialog(this,
+        ContextThemeWrapper pickerContext = new ContextThemeWrapper(
+                this, R.style.BirthdayDatePickerTheme);
+        DatePickerDialog dialog = new DatePickerDialog(pickerContext,
                 (DatePicker picker, int selectedYear, int selectedMonth, int selectedDay) -> {
                     settings.setBirthday(selectedMonth + 1, selectedDay);
                     settings.save(sharedPreferences);
